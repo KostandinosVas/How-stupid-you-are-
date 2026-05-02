@@ -1,0 +1,190 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-05-02",
+  "dimensions": [
+    {
+      "id": "logical-reasoning",
+      "name": "Logical Reasoning",
+      "description": "Solve puzzles using logic and patterns.",
+      "weight": 0.15,
+      "questions": [
+        {
+          "id": "lr-1",
+          "type": "visual-multiple-choice",
+          "imageUrl": "/images/matrices/lr-1.svg",
+          "options": [
+            { "id": "A", "imageUrl": "/images/matrices/lr-1-A.svg" },
+            { "id": "B", "imageUrl": "/images/matrices/lr-1-B.svg" },
+            { "id": "C", "imageUrl": "/images/matrices/lr-1-C.svg" },
+            { "id": "D", "imageUrl": "/images/matrices/lr-1-D.svg" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "The pattern rotates 90° clockwise each step."
+        }
+      ]
+    },
+    {
+      "id": "numerical-ability",
+      "name": "Numerical Ability",
+      "description": "Identify number patterns and solve basic arithmetic.",
+      "weight": 0.15,
+      "questions": [
+        {
+          "id": "na-1",
+          "type": "text-multiple-choice",
+          "text": "2 — 4 — 8 — 16 — ?",
+          "options": [
+            { "id": "A", "text": "18" },
+            { "id": "B", "text": "24" },
+            { "id": "C", "text": "32" },
+            { "id": "D", "text": "28" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Each number doubles the previous one."
+        }
+      ]
+    },
+    {
+      "id": "verbal-intelligence",
+      "name": "Verbal Intelligence",
+      "description": "Understand word relationships and vocabulary.",
+      "weight": 0.10,
+      "questions": [
+        {
+          "id": "vi-1",
+          "type": "text-multiple-choice",
+          "text": "Hot is to Cold as Day is to ?",
+          "options": [
+            { "id": "A", "text": "Sun" },
+            { "id": "B", "text": "Night" },
+            { "id": "C", "text": "Moon" },
+            { "id": "D", "text": "Dark" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Hot and Cold are opposites. Day and Night are opposites."
+        }
+      ]
+    },
+    {
+      "id": "spatial-intelligence",
+      "name": "Spatial Intelligence",
+      "description": "Mentally rotate and manipulate shapes.",
+      "weight": 0.15,
+      "questions": [
+        {
+          "id": "si-1",
+          "type": "visual-multiple-choice",
+          "imageUrl": "/images/shapes/si-1.svg",
+          "options": [
+            { "id": "A", "imageUrl": "/images/shapes/si-1-A.svg" },
+            { "id": "B", "imageUrl": "/images/shapes/si-1-B.svg" },
+            { "id": "C", "imageUrl": "/images/shapes/si-1-C.svg" },
+            { "id": "D", "imageUrl": "/images/shapes/si-1-D.svg" }
+          ],
+          "correctAnswer": "A",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "The shape is rotated 180°."
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "name": "Memory",
+      "description": "Recall sequences of symbols shown briefly.",
+      "weight": 0.15,
+      "questions": [
+        {
+          "id": "mem-1",
+          "type": "visual-multiple-choice",
+          "imageUrl": "/images/icons/mem-1.svg",
+          "options": [
+            { "id": "A", "imageUrl": "/images/icons/mem-1-A.svg" },
+            { "id": "B", "imageUrl": "/images/icons/mem-1-B.svg" },
+            { "id": "C", "imageUrl": "/images/icons/mem-1-C.svg" },
+            { "id": "D", "imageUrl": "/images/icons/mem-1-D.svg" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 10,
+          "explanation": "The sequence shown was: circle, square, triangle."
+        }
+      ]
+    },
+    {
+      "id": "processing-speed",
+      "name": "Processing Speed",
+      "description": "Quickly identify matching symbols under time pressure.",
+      "weight": 0.10,
+      "questions": [
+        {
+          "id": "ps-1",
+          "type": "visual-multiple-choice",
+          "imageUrl": "/images/icons/ps-1.svg",
+          "options": [
+            { "id": "A", "imageUrl": "/images/icons/ps-1-A.svg" },
+            { "id": "B", "imageUrl": "/images/icons/ps-1-B.svg" },
+            { "id": "C", "imageUrl": "/images/icons/ps-1-C.svg" },
+            { "id": "D", "imageUrl": "/images/icons/ps-1-D.svg" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": 5,
+          "explanation": "The matching symbol is option C."
+        }
+      ]
+    },
+    {
+      "id": "emotional-intelligence",
+      "name": "Emotional Intelligence",
+      "description": "Identify emotions from facial expressions and situations.",
+      "weight": 0.10,
+      "questions": [
+        {
+          "id": "ei-1",
+          "type": "visual-multiple-choice",
+          "imageUrl": "/images/icons/ei-1.svg",
+          "options": [
+            { "id": "A", "text": "Happy" },
+            { "id": "B", "text": "Sad" },
+            { "id": "C", "text": "Angry" },
+            { "id": "D", "text": "Surprised" }
+          ],
+          "correctAnswer": "A",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "The expression shown indicates happiness."
+        }
+      ]
+    },
+    {
+      "id": "creativity",
+      "name": "Creativity",
+      "description": "Find unusual or original uses for common objects.",
+      "weight": 0.10,
+      "questions": [
+        {
+          "id": "cr-1",
+          "type": "text-multiple-choice",
+          "text": "Which of these is the most unusual use for a brick?",
+          "options": [
+            { "id": "A", "text": "Build a wall" },
+            { "id": "B", "text": "Doorstop" },
+            { "id": "C", "text": "Bookend" },
+            { "id": "D", "text": "Float in water" }
+          ],
+          "correctAnswer": "D",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Bricks sink — imagining one floating shows divergent thinking."
+        }
+      ]
+    }
+  ]
+}
