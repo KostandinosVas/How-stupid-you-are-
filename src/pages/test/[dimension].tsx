@@ -74,9 +74,9 @@ export default function TestPage() {
     <MainLayout title={dimensionData.name} progress={progress}>
       {timeLimit > 0 && <Timer timeLeft={timeLeft} />}
       {currentQuestion.type === 'visual-multiple-choice' ? (
-        <VisualQuestion question={currentQuestion as unknown as Question} onAnswer={handleAnswer} />
+        <VisualQuestion key={currentQuestion.id} question={currentQuestion as unknown as Question} onAnswer={handleAnswer} />
       ) : (
-        <TextQuestion question={currentQuestion as unknown as Question} onAnswer={handleAnswer} />
+        <TextQuestion key={currentQuestion.id} question={currentQuestion as unknown as Question} onAnswer={handleAnswer} />
       )}
     </MainLayout>
   );

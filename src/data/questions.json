@@ -10,18 +10,33 @@
       "questions": [
         {
           "id": "lr-1",
-          "type": "visual-multiple-choice",
-          "imageUrl": "/images/matrices/lr-1.svg",
+          "type": "text-multiple-choice",
+          "text": "If all Bloops are Razzles, and all Razzles are Lazzles, are all Bloops definitely Lazzles?",
           "options": [
-            { "id": "A", "imageUrl": "/images/matrices/lr-1-A.svg" },
-            { "id": "B", "imageUrl": "/images/matrices/lr-1-B.svg" },
-            { "id": "C", "imageUrl": "/images/matrices/lr-1-C.svg" },
-            { "id": "D", "imageUrl": "/images/matrices/lr-1-D.svg" }
+            { "id": "A", "text": "Yes" },
+            { "id": "B", "text": "No" },
+            { "id": "C", "text": "Cannot tell" },
+            { "id": "D", "text": "Sometimes" }
           ],
-          "correctAnswer": "C",
+          "correctAnswer": "A",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "The pattern rotates 90° clockwise each step."
+          "explanation": "If A→B and B→C, then A→C. All Bloops are Lazzles."
+        },
+        {
+          "id": "lr-2",
+          "type": "text-multiple-choice",
+          "text": "Which number comes next? 3 — 6 — 12 — 24 — ?",
+          "options": [
+            { "id": "A", "text": "36" },
+            { "id": "B", "text": "48" },
+            { "id": "C", "text": "30" },
+            { "id": "D", "text": "42" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Each number doubles the previous one. 24 × 2 = 48."
         }
       ]
     },
@@ -45,6 +60,21 @@
           "difficulty": "easy",
           "timeLimit": null,
           "explanation": "Each number doubles the previous one."
+        },
+        {
+          "id": "na-2",
+          "type": "text-multiple-choice",
+          "text": "What is 15% of 200?",
+          "options": [
+            { "id": "A", "text": "20" },
+            { "id": "B", "text": "25" },
+            { "id": "C", "text": "30" },
+            { "id": "D", "text": "35" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "15% of 200 = 0.15 × 200 = 30."
         }
       ]
     },
@@ -68,6 +98,21 @@
           "difficulty": "easy",
           "timeLimit": null,
           "explanation": "Hot and Cold are opposites. Day and Night are opposites."
+        },
+        {
+          "id": "vi-2",
+          "type": "text-multiple-choice",
+          "text": "Which word does NOT belong? Apple — Banana — Carrot — Mango",
+          "options": [
+            { "id": "A", "text": "Apple" },
+            { "id": "B", "text": "Banana" },
+            { "id": "C", "text": "Carrot" },
+            { "id": "D", "text": "Mango" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Carrot is a vegetable; the rest are fruits."
         }
       ]
     },
@@ -79,41 +124,71 @@
       "questions": [
         {
           "id": "si-1",
-          "type": "visual-multiple-choice",
-          "imageUrl": "/images/shapes/si-1.svg",
+          "type": "text-multiple-choice",
+          "text": "A square is rotated 90°. What shape does it become?",
           "options": [
-            { "id": "A", "imageUrl": "/images/shapes/si-1-A.svg" },
-            { "id": "B", "imageUrl": "/images/shapes/si-1-B.svg" },
-            { "id": "C", "imageUrl": "/images/shapes/si-1-C.svg" },
-            { "id": "D", "imageUrl": "/images/shapes/si-1-D.svg" }
+            { "id": "A", "text": "Rectangle" },
+            { "id": "B", "text": "Diamond" },
+            { "id": "C", "text": "Square" },
+            { "id": "D", "text": "Triangle" }
           ],
-          "correctAnswer": "A",
+          "correctAnswer": "C",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "The shape is rotated 180°."
+          "explanation": "A square rotated 90° is still a square — all sides are equal."
+        },
+        {
+          "id": "si-2",
+          "type": "text-multiple-choice",
+          "text": "How many faces does a cube have?",
+          "options": [
+            { "id": "A", "text": "4" },
+            { "id": "B", "text": "5" },
+            { "id": "C", "text": "6" },
+            { "id": "D", "text": "8" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "A cube has 6 faces."
         }
       ]
     },
     {
       "id": "memory",
       "name": "Memory",
-      "description": "Recall sequences of symbols shown briefly.",
+      "description": "Recall sequences and details.",
       "weight": 0.15,
       "questions": [
         {
           "id": "mem-1",
-          "type": "visual-multiple-choice",
-          "imageUrl": "/images/icons/mem-1.svg",
+          "type": "text-multiple-choice",
+          "text": "Study this sequence: 7 — 3 — 9 — 1. What was the third number?",
           "options": [
-            { "id": "A", "imageUrl": "/images/icons/mem-1-A.svg" },
-            { "id": "B", "imageUrl": "/images/icons/mem-1-B.svg" },
-            { "id": "C", "imageUrl": "/images/icons/mem-1-C.svg" },
-            { "id": "D", "imageUrl": "/images/icons/mem-1-D.svg" }
+            { "id": "A", "text": "7" },
+            { "id": "B", "text": "3" },
+            { "id": "C", "text": "9" },
+            { "id": "D", "text": "1" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": 15,
+          "explanation": "The sequence was 7, 3, 9, 1. The third number is 9."
+        },
+        {
+          "id": "mem-2",
+          "type": "text-multiple-choice",
+          "text": "Which word was second in this list? Cat — Tree — Door — Sun",
+          "options": [
+            { "id": "A", "text": "Cat" },
+            { "id": "B", "text": "Tree" },
+            { "id": "C", "text": "Door" },
+            { "id": "D", "text": "Sun" }
           ],
           "correctAnswer": "B",
           "difficulty": "easy",
-          "timeLimit": 10,
-          "explanation": "The sequence shown was: circle, square, triangle."
+          "timeLimit": 15,
+          "explanation": "The list was: Cat, Tree, Door, Sun. The second word is Tree."
         }
       ]
     },
@@ -125,41 +200,71 @@
       "questions": [
         {
           "id": "ps-1",
-          "type": "visual-multiple-choice",
-          "imageUrl": "/images/icons/ps-1.svg",
+          "type": "text-multiple-choice",
+          "text": "Which of these is NOT a prime number?",
           "options": [
-            { "id": "A", "imageUrl": "/images/icons/ps-1-A.svg" },
-            { "id": "B", "imageUrl": "/images/icons/ps-1-B.svg" },
-            { "id": "C", "imageUrl": "/images/icons/ps-1-C.svg" },
-            { "id": "D", "imageUrl": "/images/icons/ps-1-D.svg" }
+            { "id": "A", "text": "7" },
+            { "id": "B", "text": "11" },
+            { "id": "C", "text": "9" },
+            { "id": "D", "text": "13" }
           ],
           "correctAnswer": "C",
           "difficulty": "easy",
-          "timeLimit": 5,
-          "explanation": "The matching symbol is option C."
+          "timeLimit": 8,
+          "explanation": "9 = 3 × 3, so it is not prime."
+        },
+        {
+          "id": "ps-2",
+          "type": "text-multiple-choice",
+          "text": "Count the letter 'a': banana",
+          "options": [
+            { "id": "A", "text": "2" },
+            { "id": "B", "text": "3" },
+            { "id": "C", "text": "4" },
+            { "id": "D", "text": "1" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 8,
+          "explanation": "b-A-n-A-n-A — three a's."
         }
       ]
     },
     {
       "id": "emotional-intelligence",
       "name": "Emotional Intelligence",
-      "description": "Identify emotions from facial expressions and situations.",
+      "description": "Identify emotions from situations.",
       "weight": 0.10,
       "questions": [
         {
           "id": "ei-1",
-          "type": "visual-multiple-choice",
-          "imageUrl": "/images/icons/ei-1.svg",
+          "type": "text-multiple-choice",
+          "text": "Your friend just lost their job. What is the most supportive response?",
           "options": [
-            { "id": "A", "text": "Happy" },
-            { "id": "B", "text": "Sad" },
-            { "id": "C", "text": "Angry" },
-            { "id": "D", "text": "Surprised" }
+            { "id": "A", "text": "Tell them it's their own fault" },
+            { "id": "B", "text": "Ignore it and change the subject" },
+            { "id": "C", "text": "Listen and offer support" },
+            { "id": "D", "text": "Say you're too busy to talk" }
           ],
-          "correctAnswer": "A",
+          "correctAnswer": "C",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "The expression shown indicates happiness."
+          "explanation": "Active listening and offering support is the most empathetic response."
+        },
+        {
+          "id": "ei-2",
+          "type": "text-multiple-choice",
+          "text": "Someone is crying silently. What emotion are they most likely feeling?",
+          "options": [
+            { "id": "A", "text": "Bored" },
+            { "id": "B", "text": "Happy" },
+            { "id": "C", "text": "Sad or distressed" },
+            { "id": "D", "text": "Excited" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Crying is typically associated with sadness or distress."
         }
       ]
     },
@@ -172,7 +277,7 @@
         {
           "id": "cr-1",
           "type": "text-multiple-choice",
-          "text": "Which of these is the most unusual use for a brick?",
+          "text": "Which is the most unusual use for a brick?",
           "options": [
             { "id": "A", "text": "Build a wall" },
             { "id": "B", "text": "Doorstop" },
@@ -183,6 +288,21 @@
           "difficulty": "easy",
           "timeLimit": null,
           "explanation": "Bricks sink — imagining one floating shows divergent thinking."
+        },
+        {
+          "id": "cr-2",
+          "type": "text-multiple-choice",
+          "text": "Which use for a newspaper is most creative?",
+          "options": [
+            { "id": "A", "text": "Read it" },
+            { "id": "B", "text": "Wrap fish" },
+            { "id": "C", "text": "Origami sculpture" },
+            { "id": "D", "text": "Light a fire" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Origami transforms the newspaper into a new form, showing creative thinking."
         }
       ]
     }
