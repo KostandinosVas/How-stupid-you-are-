@@ -21,18 +21,23 @@ export default function TextQuestion({ question, onAnswer }: TextQuestionProps) 
       {question.text && (
         <p className={styles.questionText}>{question.text}</p>
       )}
-      <div className={styles.optionsGrid}>
+      <div className={styles.optionsList}>
         {question.options.map((option) => (
           <button
             key={option.id}
             onClick={() => handleSelect(option.id)}
             className={`${styles.optionButton} ${
               selectedAnswer === option.id ? styles.selected : ''
-            }`}
+            } ${selectedAnswer !== null ? styles.answered : ''}`}
             disabled={selectedAnswer !== null}
-            aria-label={`Option ${option.id}`}
+            aria-label={`Option ${option.id}: ${option.text ?? option.symbol}`}
           >
-            {option.text ?? option.symbol}
+            <span className={`${styles.optionLetter} ${
+              selectedAnswer === option.id ? styles.optionLetterSelected : ''
+            }`}>
+              {option.id}
+            </span>
+            <span className={styles.optionText}>{option.text ?? option.symbol}</span>
           </button>
         ))}
       </div>

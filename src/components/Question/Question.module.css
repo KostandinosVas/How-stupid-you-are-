@@ -1,20 +1,108 @@
 .questionCard {
-  background-color: white;
-  border-radius: 0.75rem;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.1),
-    0 1px 2px rgba(0, 0, 0, 0.06);
-  padding: 1.5rem;
-  max-width: 48rem;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  padding: 1.75rem;
   width: 100%;
-  margin: 1rem auto;
+  animation: fadeInUp 0.35s ease both;
 }
 
 .questionText {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
-  margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+/* Vertical stacked options */
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.optionButton {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    transform 150ms ease,
+    box-shadow 150ms ease;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  font-family: var(--font-family);
+}
+
+.optionButton:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  transform: translateX(3px);
+}
+
+.optionButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.optionButton.selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.optionButton.answered:not(.selected) {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Letter badge */
+.optionLetter {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--color-gray-light);
+  border: 1.5px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  transition:
+    background 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+.optionLetterSelected {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.optionText {
+  flex: 1;
+  line-height: 1.45;
+}
+
+/* Legacy */
+.optionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
 }
 
 .questionImage {
@@ -22,39 +110,7 @@
   max-height: 300px;
   object-fit: contain;
   margin-bottom: 1.5rem;
-}
-
-.optionsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.optionButton {
-  padding: 1rem;
-  border: 2px solid #d1d5db;
-  border-radius: 0.5rem;
-  background-color: white;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.optionButton:hover {
-  background-color: #f3f4f6;
-  border-color: #9ca3af;
-}
-
-.optionButton:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-}
-
-.optionButton.selected {
-  border-color: #3b82f6;
-  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: var(--border-radius-md);
 }
 
 .optionImage {

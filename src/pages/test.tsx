@@ -1,11 +1,39 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import styled from 'styled-components';
 import MainLayout from '@/components/Layout/MainLayout';
 import TextQuestion from '@/components/Question/TextQuestion';
 import Timer from '@/components/Timer/Timer';
 import { useTimer } from '@/hooks/useTimer';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { Question, UserAnswer } from '@/types';
+
+const MetaBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+`;
+
+const DimBadge = styled.span`
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: var(--border-radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+`;
+
+const CounterText = styled.span`
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+`;
 
 export default function TestPage() {
   const router = useRouter();
@@ -57,7 +85,7 @@ export default function TestPage() {
       ...prev,
       { questionId: currentQuestion.id, answer: answerId, timeTaken },
     ]);
-    setTimeout(handleNext, 500);
+    setTimeout(handleNext, 600);
   };
 
   if (!session || !currentQuestion) {
@@ -67,10 +95,12 @@ export default function TestPage() {
   return (
     <MainLayout title={currentQuestion.dimensionName} progress={progress}>
       {timeLimit > 0 && <Timer timeLeft={timeLeft} />}
-      <p style={{ textAlign: 'center', color: '#6B7280', fontSize: '0.875rem', marginTop: '1.5rem' }}>
-        Question {currentIndex + 1} of {total}&nbsp;·&nbsp;{remaining} remaining
-        &nbsp;·&nbsp;<span style={{ color: '#3B82F6' }}>{currentQuestion.dimensionName}</span>
-      </p>
+      <MetaBar>
+        <DimBadge>{currentQuestion.dimensionName}</DimBadge>
+        <CounterText>
+          {currentIndex + 1} / {total} &nbsp;·&nbsp; {remaining} left
+        </CounterText>
+      </MetaBar>
       <TextQuestion
         key={currentQuestion.id}
         question={currentQuestion}

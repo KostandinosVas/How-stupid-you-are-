@@ -2,15 +2,20 @@ import styled from 'styled-components';
 
 const TimerContainer = styled.div<{ $isWarning: boolean }>`
   position: fixed;
-  top: 1rem;
+  top: calc(var(--header-height, 4rem) + 0.75rem);
   right: 1rem;
-  font-size: 1.25rem;
-  font-family: monospace;
-  color: ${(props) => (props.$isWarning ? '#EF4444' : '#1F2937')};
-  background-color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 0.875rem;
+  font-family: var(--font-family);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: ${(props) => (props.$isWarning ? '#ef4444' : 'var(--color-text)')};
+  background: ${(props) => (props.$isWarning ? '#fef2f2' : 'var(--color-surface)')};
+  border: 1.5px solid ${(props) => (props.$isWarning ? '#fca5a5' : 'var(--color-border)')};
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--border-radius-full);
+  box-shadow: var(--shadow-sm);
+  z-index: 300;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
 `;
 
 export default function Timer({ timeLeft }: { timeLeft: number }) {
