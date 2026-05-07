@@ -38,12 +38,14 @@ export default function TestPage() {
     }
   };
 
-  const { timeLeft, start, reset } = useTimer(timeLimit, handleNext);
+  const { timeLeft, start, pause, reset } = useTimer(timeLimit, handleNext);
 
   useEffect(() => {
     if (timeLimit > 0) {
       reset(timeLimit);
       start();
+    } else {
+      pause();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, dimension]);
@@ -68,11 +70,15 @@ export default function TestPage() {
 
   const totalQuestions = questionsData.dimensions.reduce((a, d) => a + d.questions.length, 0);
   const answeredSoFar = answers.length;
+  const remaining = totalQuestions - answeredSoFar;
   const progress = Math.round((answeredSoFar / totalQuestions) * 100);
 
   return (
     <MainLayout title={dimensionData.name} progress={progress}>
       {timeLimit > 0 && <Timer timeLeft={timeLeft} />}
+      <p style={{ textAlign: 'center', color: '#6B7280', fontSize: '0.875rem', marginTop: '1.5rem' }}>
+        Question {answeredSoFar + 1} of {totalQuestions} &nbsp;·&nbsp; {remaining - 1 >= 0 ? remaining - 1 : 0} remaining
+      </p>
       {currentQuestion.type === 'visual-multiple-choice' ? (
         <VisualQuestion key={currentQuestion.id} question={currentQuestion as unknown as Question} onAnswer={handleAnswer} />
       ) : (

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface ProgressBarProps {
-  progress: number; // 0-100
+  progress: number;
 }
 
 const ProgressBarContainer = styled.div`
@@ -14,9 +14,9 @@ const ProgressBarContainer = styled.div`
   z-index: 1000;
 `;
 
-const ProgressBarFill = styled.div<ProgressBarProps>`
+const ProgressBarFill = styled.div<{ $progress: number }>`
   height: 100%;
-  width: ${(props) => props.progress}%;
+  width: ${(props) => props.$progress}%;
   background-color: #3B82F6;
   transition: width 0.3s ease;
 `;
@@ -24,7 +24,7 @@ const ProgressBarFill = styled.div<ProgressBarProps>`
 export default function ProgressBar({ progress }: ProgressBarProps) {
   return (
     <ProgressBarContainer>
-      <ProgressBarFill progress={progress} />
+      <ProgressBarFill $progress={progress} />
     </ProgressBarContainer>
   );
 }

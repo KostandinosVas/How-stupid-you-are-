@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "lastUpdated": "2026-05-02",
+  "version": "1.1",
+  "lastUpdated": "2026-05-07",
   "dimensions": [
     {
       "id": "logical-reasoning",
@@ -11,70 +11,310 @@
         {
           "id": "lr-1",
           "type": "text-multiple-choice",
-          "text": "If all Bloops are Razzles, and all Razzles are Lazzles, are all Bloops definitely Lazzles?",
+          "text": "If all humans are mortal and Socrates is a human, then:",
           "options": [
-            { "id": "A", "text": "Yes" },
-            { "id": "B", "text": "No" },
-            { "id": "C", "text": "Cannot tell" },
-            { "id": "D", "text": "Sometimes" }
+            { "id": "A", "text": "Socrates is mortal." },
+            { "id": "B", "text": "Socrates is not mortal." },
+            { "id": "C", "text": "Only some humans are mortal." },
+            { "id": "D", "text": "We cannot know." }
           ],
           "correctAnswer": "A",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "If A→B and B→C, then A→C. All Bloops are Lazzles."
+          "explanation": "Syllogism: All humans are mortal + Socrates is a human → Socrates is mortal."
         },
         {
           "id": "lr-2",
           "type": "text-multiple-choice",
-          "text": "Which number comes next? 3 — 6 — 12 — 24 — ?",
+          "text": "What number comes next in the sequence: 2, 4, 8, 16, ?",
           "options": [
-            { "id": "A", "text": "36" },
-            { "id": "B", "text": "48" },
-            { "id": "C", "text": "30" },
-            { "id": "D", "text": "42" }
+            { "id": "A", "text": "24" },
+            { "id": "B", "text": "32" },
+            { "id": "C", "text": "64" },
+            { "id": "D", "text": "128" }
           ],
           "correctAnswer": "B",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "Each number doubles the previous one. 24 × 2 = 48."
+          "explanation": "Each number is multiplied by 2: 16×2=32."
+        },
+        {
+          "id": "lr-3",
+          "type": "text-multiple-choice",
+          "text": "If A = 1, B = 2, C = 3, ... what is the number for 'E'?",
+          "options": [
+            { "id": "A", "text": "4" },
+            { "id": "B", "text": "5" },
+            { "id": "C", "text": "6" },
+            { "id": "D", "text": "7" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "E is the 5th letter of the alphabet."
+        },
+        {
+          "id": "lr-4",
+          "type": "text-multiple-choice",
+          "text": "Which word does not belong: DOG, CAT, BIRD, CAR?",
+          "options": [
+            { "id": "A", "text": "DOG" },
+            { "id": "B", "text": "CAT" },
+            { "id": "C", "text": "BIRD" },
+            { "id": "D", "text": "CAR" }
+          ],
+          "correctAnswer": "D",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "CAR is not an animal."
+        },
+        {
+          "id": "lr-5",
+          "type": "text-multiple-choice",
+          "text": "If Mary is taller than John and John is taller than Kostas, then:",
+          "options": [
+            { "id": "A", "text": "Mary is taller than Kostas." },
+            { "id": "B", "text": "Kostas is taller than Mary." },
+            { "id": "C", "text": "We cannot compare Mary and Kostas." },
+            { "id": "D", "text": "John is the shortest." }
+          ],
+          "correctAnswer": "A",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Mary > John > Kostas → Mary > Kostas."
+        },
+        {
+          "id": "lr-6",
+          "type": "text-multiple-choice",
+          "text": "Which shape continues the sequence: △, □, △, □, ?",
+          "options": [
+            { "id": "A", "text": "△" },
+            { "id": "B", "text": "□" },
+            { "id": "C", "text": "○" },
+            { "id": "D", "text": "◇" }
+          ],
+          "correctAnswer": "A",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Alternation between △ and □."
+        },
+        {
+          "id": "lr-7",
+          "type": "text-multiple-choice",
+          "text": "If 'YES' means 'NO' and 'NO' means 'YES', then what does 'YES' mean?",
+          "options": [
+            { "id": "A", "text": "YES" },
+            { "id": "B", "text": "NO" },
+            { "id": "C", "text": "Maybe" },
+            { "id": "D", "text": "Uncertain" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Reversal of meanings: YES = NO."
+        },
+        {
+          "id": "lr-8",
+          "type": "text-multiple-choice",
+          "text": "What number is missing: 5, 10, 20, 40, ?",
+          "options": [
+            { "id": "A", "text": "60" },
+            { "id": "B", "text": "80" },
+            { "id": "C", "text": "100" },
+            { "id": "D", "text": "160" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Each number is multiplied by 2: 40×2=80."
+        },
+        {
+          "id": "lr-9",
+          "type": "text-multiple-choice",
+          "text": "If all flowers are beautiful and some beautiful things are red, then:",
+          "options": [
+            { "id": "A", "text": "All flowers are red." },
+            { "id": "B", "text": "Some flowers are red." },
+            { "id": "C", "text": "No flowers are red." },
+            { "id": "D", "text": "We cannot know." }
+          ],
+          "correctAnswer": "D",
+          "difficulty": "medium",
+          "timeLimit": null,
+          "explanation": "We only know some beautiful things are red — we cannot conclude any flowers are necessarily red."
+        },
+        {
+          "id": "lr-10",
+          "type": "text-multiple-choice",
+          "text": "Which word is the odd one out: BOOK, NEWSPAPER, MAGAZINE, THEATER?",
+          "options": [
+            { "id": "A", "text": "BOOK" },
+            { "id": "B", "text": "NEWSPAPER" },
+            { "id": "C", "text": "MAGAZINE" },
+            { "id": "D", "text": "THEATER" }
+          ],
+          "correctAnswer": "D",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Theater is not a printed medium."
         }
       ]
     },
     {
       "id": "numerical-ability",
       "name": "Numerical Ability",
-      "description": "Identify number patterns and solve basic arithmetic.",
+      "description": "Identify number patterns and solve arithmetic.",
       "weight": 0.15,
       "questions": [
         {
           "id": "na-1",
           "type": "text-multiple-choice",
-          "text": "2 — 4 — 8 — 16 — ?",
+          "text": "What is 15 × 8?",
           "options": [
-            { "id": "A", "text": "18" },
-            { "id": "B", "text": "24" },
-            { "id": "C", "text": "32" },
-            { "id": "D", "text": "28" }
+            { "id": "A", "text": "100" },
+            { "id": "B", "text": "110" },
+            { "id": "C", "text": "120" },
+            { "id": "D", "text": "130" }
           ],
           "correctAnswer": "C",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "Each number doubles the previous one."
+          "explanation": "15 × 8 = 120."
         },
         {
           "id": "na-2",
           "type": "text-multiple-choice",
-          "text": "What is 15% of 200?",
+          "text": "What is 24 ÷ 6?",
           "options": [
-            { "id": "A", "text": "20" },
-            { "id": "B", "text": "25" },
-            { "id": "C", "text": "30" },
-            { "id": "D", "text": "35" }
+            { "id": "A", "text": "3" },
+            { "id": "B", "text": "4" },
+            { "id": "C", "text": "5" },
+            { "id": "D", "text": "6" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "24 ÷ 6 = 4."
+        },
+        {
+          "id": "na-3",
+          "type": "text-multiple-choice",
+          "text": "What is 7²?",
+          "options": [
+            { "id": "A", "text": "14" },
+            { "id": "B", "text": "21" },
+            { "id": "C", "text": "49" },
+            { "id": "D", "text": "64" }
           ],
           "correctAnswer": "C",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "15% of 200 = 0.15 × 200 = 30."
+          "explanation": "7² = 7 × 7 = 49."
+        },
+        {
+          "id": "na-4",
+          "type": "text-multiple-choice",
+          "text": "What is 10% of 200?",
+          "options": [
+            { "id": "A", "text": "10" },
+            { "id": "B", "text": "20" },
+            { "id": "C", "text": "50" },
+            { "id": "D", "text": "100" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "10% of 200 = 0.10 × 200 = 20."
+        },
+        {
+          "id": "na-5",
+          "type": "text-multiple-choice",
+          "text": "What is 3/4 of 80?",
+          "options": [
+            { "id": "A", "text": "20" },
+            { "id": "B", "text": "40" },
+            { "id": "C", "text": "60" },
+            { "id": "D", "text": "80" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "3/4 × 80 = 60."
+        },
+        {
+          "id": "na-6",
+          "type": "text-multiple-choice",
+          "text": "A product costs $50 with a 20% discount. What is the final price?",
+          "options": [
+            { "id": "A", "text": "$30" },
+            { "id": "B", "text": "$40" },
+            { "id": "C", "text": "$45" },
+            { "id": "D", "text": "$50" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "20% of $50 = $10 → $50 - $10 = $40."
+        },
+        {
+          "id": "na-7",
+          "type": "text-multiple-choice",
+          "text": "What is 5! (factorial of 5)?",
+          "options": [
+            { "id": "A", "text": "25" },
+            { "id": "B", "text": "60" },
+            { "id": "C", "text": "120" },
+            { "id": "D", "text": "150" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "medium",
+          "timeLimit": null,
+          "explanation": "5! = 5 × 4 × 3 × 2 × 1 = 120."
+        },
+        {
+          "id": "na-8",
+          "type": "text-multiple-choice",
+          "text": "If 3 workers build a house in 12 days, how many days for 6 workers?",
+          "options": [
+            { "id": "A", "text": "3" },
+            { "id": "B", "text": "4" },
+            { "id": "C", "text": "6" },
+            { "id": "D", "text": "12" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "medium",
+          "timeLimit": null,
+          "explanation": "Doubling the workers halves the time: 12 ÷ 2 = 6 days."
+        },
+        {
+          "id": "na-9",
+          "type": "text-multiple-choice",
+          "text": "What is √144?",
+          "options": [
+            { "id": "A", "text": "10" },
+            { "id": "B", "text": "12" },
+            { "id": "C", "text": "14" },
+            { "id": "D", "text": "16" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "12 × 12 = 144 → √144 = 12."
+        },
+        {
+          "id": "na-10",
+          "type": "text-multiple-choice",
+          "text": "What is 15 + 25 × 2?",
+          "options": [
+            { "id": "A", "text": "50" },
+            { "id": "B", "text": "65" },
+            { "id": "C", "text": "80" },
+            { "id": "D", "text": "100" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "medium",
+          "timeLimit": null,
+          "explanation": "Multiplication first: 25 × 2 = 50, then 15 + 50 = 65."
         }
       ]
     },
@@ -86,6 +326,111 @@
       "questions": [
         {
           "id": "vi-1",
+          "type": "text-multiple-choice",
+          "text": "What is the opposite of 'fast'?",
+          "options": [
+            { "id": "A", "text": "Slow" },
+            { "id": "B", "text": "Quick" },
+            { "id": "C", "text": "Strong" },
+            { "id": "D", "text": "Smart" }
+          ],
+          "correctAnswer": "A",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Opposite of 'fast' is 'slow'."
+        },
+        {
+          "id": "vi-2",
+          "type": "text-multiple-choice",
+          "text": "What is a synonym for 'happiness'?",
+          "options": [
+            { "id": "A", "text": "Sadness" },
+            { "id": "B", "text": "Joy" },
+            { "id": "C", "text": "Anger" },
+            { "id": "D", "text": "Fear" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Synonym of 'happiness' is 'joy'."
+        },
+        {
+          "id": "vi-3",
+          "type": "text-multiple-choice",
+          "text": "Which word does not belong: CHAIR, TABLE, SOFA, LAMP?",
+          "options": [
+            { "id": "A", "text": "CHAIR" },
+            { "id": "B", "text": "TABLE" },
+            { "id": "C", "text": "SOFA" },
+            { "id": "D", "text": "LAMP" }
+          ],
+          "correctAnswer": "D",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Lamp is not a piece of furniture you sit or place things on."
+        },
+        {
+          "id": "vi-4",
+          "type": "text-multiple-choice",
+          "text": "What is the antonym of 'love'?",
+          "options": [
+            { "id": "A", "text": "Hate" },
+            { "id": "B", "text": "Friendship" },
+            { "id": "C", "text": "Sympathy" },
+            { "id": "D", "text": "Hostility" }
+          ],
+          "correctAnswer": "A",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Antonym of 'love' is 'hate'."
+        },
+        {
+          "id": "vi-5",
+          "type": "text-multiple-choice",
+          "text": "Which word is the odd one out: APPLE, STRAWBERRY, PEACH, CARROT?",
+          "options": [
+            { "id": "A", "text": "APPLE" },
+            { "id": "B", "text": "STRAWBERRY" },
+            { "id": "C", "text": "PEACH" },
+            { "id": "D", "text": "CARROT" }
+          ],
+          "correctAnswer": "D",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Carrot is a vegetable; the rest are fruits."
+        },
+        {
+          "id": "vi-6",
+          "type": "text-multiple-choice",
+          "text": "Complete the analogy: LION : ANIMAL :: ROSE : ...",
+          "options": [
+            { "id": "A", "text": "FLOWER" },
+            { "id": "B", "text": "PLANT" },
+            { "id": "C", "text": "TREE" },
+            { "id": "D", "text": "SEA" }
+          ],
+          "correctAnswer": "A",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Lion is an animal, rose is a flower."
+        },
+        {
+          "id": "vi-7",
+          "type": "text-multiple-choice",
+          "text": "What is a synonym for 'brave'?",
+          "options": [
+            { "id": "A", "text": "Cowardly" },
+            { "id": "B", "text": "Heroic" },
+            { "id": "C", "text": "Scared" },
+            { "id": "D", "text": "Decisive" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Synonym of 'brave' is 'heroic'."
+        },
+        {
+          "id": "vi-8",
           "type": "text-multiple-choice",
           "text": "Hot is to Cold as Day is to ?",
           "options": [
@@ -100,19 +445,34 @@
           "explanation": "Hot and Cold are opposites. Day and Night are opposites."
         },
         {
-          "id": "vi-2",
+          "id": "vi-9",
           "type": "text-multiple-choice",
-          "text": "Which word does NOT belong? Apple — Banana — Carrot — Mango",
+          "text": "What is a synonym for 'wonderful'?",
           "options": [
-            { "id": "A", "text": "Apple" },
-            { "id": "B", "text": "Banana" },
-            { "id": "C", "text": "Carrot" },
-            { "id": "D", "text": "Mango" }
+            { "id": "A", "text": "Terrible" },
+            { "id": "B", "text": "Excellent" },
+            { "id": "C", "text": "Ugly" },
+            { "id": "D", "text": "Average" }
           ],
-          "correctAnswer": "C",
+          "correctAnswer": "B",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "Carrot is a vegetable; the rest are fruits."
+          "explanation": "Synonym of 'wonderful' is 'excellent'."
+        },
+        {
+          "id": "vi-10",
+          "type": "text-multiple-choice",
+          "text": "Which word does NOT belong: BOOK, NEWSPAPER, MAGAZINE, RADIO?",
+          "options": [
+            { "id": "A", "text": "BOOK" },
+            { "id": "B", "text": "NEWSPAPER" },
+            { "id": "C", "text": "MAGAZINE" },
+            { "id": "D", "text": "RADIO" }
+          ],
+          "correctAnswer": "D",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Radio is an audio medium; the rest are printed."
         }
       ]
     },
@@ -125,20 +485,140 @@
         {
           "id": "si-1",
           "type": "text-multiple-choice",
-          "text": "A square is rotated 90°. What shape does it become?",
+          "text": "Which shape is the odd one out: △, □, ○, △?",
           "options": [
-            { "id": "A", "text": "Rectangle" },
-            { "id": "B", "text": "Diamond" },
-            { "id": "C", "text": "Square" },
-            { "id": "D", "text": "Triangle" }
+            { "id": "A", "text": "△" },
+            { "id": "B", "text": "□" },
+            { "id": "C", "text": "○" },
+            { "id": "D", "text": "None" }
           ],
           "correctAnswer": "C",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "A square rotated 90° is still a square — all sides are equal."
+          "explanation": "○ is a circle — the only shape without straight lines or corners."
         },
         {
           "id": "si-2",
+          "type": "text-multiple-choice",
+          "text": "If a square has a side of 4 cm, what is its area?",
+          "options": [
+            { "id": "A", "text": "8 cm²" },
+            { "id": "B", "text": "12 cm²" },
+            { "id": "C", "text": "16 cm²" },
+            { "id": "D", "text": "20 cm²" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Area = side² = 4² = 16 cm²."
+        },
+        {
+          "id": "si-3",
+          "type": "text-multiple-choice",
+          "text": "Which shape has the most angles: △, □, ▽, ○?",
+          "options": [
+            { "id": "A", "text": "△" },
+            { "id": "B", "text": "□" },
+            { "id": "C", "text": "▽" },
+            { "id": "D", "text": "○" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "The square (□) has 4 angles; triangles have 3; the circle has none."
+        },
+        {
+          "id": "si-4",
+          "type": "text-multiple-choice",
+          "text": "If a rectangle has a length of 5 cm and width of 3 cm, what is its perimeter?",
+          "options": [
+            { "id": "A", "text": "8 cm" },
+            { "id": "B", "text": "14 cm" },
+            { "id": "C", "text": "16 cm" },
+            { "id": "D", "text": "18 cm" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Perimeter = 2 × (5 + 3) = 16 cm."
+        },
+        {
+          "id": "si-5",
+          "type": "text-multiple-choice",
+          "text": "How many angles does a hexagon have?",
+          "options": [
+            { "id": "A", "text": "4" },
+            { "id": "B", "text": "5" },
+            { "id": "C", "text": "6" },
+            { "id": "D", "text": "8" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "A hexagon has 6 sides and 6 angles."
+        },
+        {
+          "id": "si-6",
+          "type": "text-multiple-choice",
+          "text": "Which shape has no angles: △, □, ○, ▽?",
+          "options": [
+            { "id": "A", "text": "△" },
+            { "id": "B", "text": "□" },
+            { "id": "C", "text": "○" },
+            { "id": "D", "text": "▽" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "The circle (○) has no angles."
+        },
+        {
+          "id": "si-7",
+          "type": "text-multiple-choice",
+          "text": "If a triangle has a base of 6 cm and a height of 4 cm, what is its area?",
+          "options": [
+            { "id": "A", "text": "12 cm²" },
+            { "id": "B", "text": "15 cm²" },
+            { "id": "C", "text": "24 cm²" },
+            { "id": "D", "text": "36 cm²" }
+          ],
+          "correctAnswer": "A",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Area = (base × height) / 2 = (6 × 4) / 2 = 12 cm²."
+        },
+        {
+          "id": "si-8",
+          "type": "text-multiple-choice",
+          "text": "Which shape is the odd one out: △, □, ○, ◇?",
+          "options": [
+            { "id": "A", "text": "△" },
+            { "id": "B", "text": "□" },
+            { "id": "C", "text": "○" },
+            { "id": "D", "text": "◇" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "The circle (○) is the only shape without straight lines."
+        },
+        {
+          "id": "si-9",
+          "type": "text-multiple-choice",
+          "text": "How many sides does a pentagon have?",
+          "options": [
+            { "id": "A", "text": "4" },
+            { "id": "B", "text": "5" },
+            { "id": "C", "text": "6" },
+            { "id": "D", "text": "7" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "A pentagon has 5 sides."
+        },
+        {
+          "id": "si-10",
           "type": "text-multiple-choice",
           "text": "How many faces does a cube have?",
           "options": [
@@ -163,146 +643,626 @@
         {
           "id": "mem-1",
           "type": "text-multiple-choice",
-          "text": "Study this sequence: 7 — 3 — 9 — 1. What was the third number?",
+          "text": "Memorize: DOG, HOUSE, CAR, BOOK. Which word is missing from: DOG, HOUSE, BOOK?",
           "options": [
-            { "id": "A", "text": "7" },
-            { "id": "B", "text": "3" },
-            { "id": "C", "text": "9" },
-            { "id": "D", "text": "1" }
+            { "id": "A", "text": "DOG" },
+            { "id": "B", "text": "HOUSE" },
+            { "id": "C", "text": "CAR" },
+            { "id": "D", "text": "BOOK" }
           ],
           "correctAnswer": "C",
           "difficulty": "easy",
-          "timeLimit": 15,
-          "explanation": "The sequence was 7, 3, 9, 1. The third number is 9."
+          "timeLimit": 20,
+          "explanation": "The missing word from the original list is CAR."
         },
         {
           "id": "mem-2",
           "type": "text-multiple-choice",
-          "text": "Which word was second in this list? Cat — Tree — Door — Sun",
+          "text": "Memorize: 3, 7, 2, 9. Which number is missing from: 3, 2, 9?",
           "options": [
-            { "id": "A", "text": "Cat" },
-            { "id": "B", "text": "Tree" },
-            { "id": "C", "text": "Door" },
-            { "id": "D", "text": "Sun" }
+            { "id": "A", "text": "2" },
+            { "id": "B", "text": "3" },
+            { "id": "C", "text": "7" },
+            { "id": "D", "text": "9" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": 20,
+          "explanation": "The missing number is 7."
+        },
+        {
+          "id": "mem-3",
+          "type": "text-multiple-choice",
+          "text": "Memorize: CAT, MOUSE, CHICKEN, DOG. Which word is missing from: CAT, CHICKEN, DOG?",
+          "options": [
+            { "id": "A", "text": "CAT" },
+            { "id": "B", "text": "MOUSE" },
+            { "id": "C", "text": "CHICKEN" },
+            { "id": "D", "text": "DOG" }
           ],
           "correctAnswer": "B",
           "difficulty": "easy",
-          "timeLimit": 15,
-          "explanation": "The list was: Cat, Tree, Door, Sun. The second word is Tree."
+          "timeLimit": 20,
+          "explanation": "The missing word is MOUSE."
+        },
+        {
+          "id": "mem-4",
+          "type": "text-multiple-choice",
+          "text": "Memorize: 12, 45, 78, 23. Which number is missing from: 12, 78, 23?",
+          "options": [
+            { "id": "A", "text": "12" },
+            { "id": "B", "text": "23" },
+            { "id": "C", "text": "45" },
+            { "id": "D", "text": "78" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": 20,
+          "explanation": "The missing number is 45."
+        },
+        {
+          "id": "mem-5",
+          "type": "text-multiple-choice",
+          "text": "Memorize: FLOWER, TREE, SEA, MOUNTAIN. Which word is missing from: FLOWER, SEA, MOUNTAIN?",
+          "options": [
+            { "id": "A", "text": "FLOWER" },
+            { "id": "B", "text": "TREE" },
+            { "id": "C", "text": "SEA" },
+            { "id": "D", "text": "MOUNTAIN" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 20,
+          "explanation": "The missing word is TREE."
+        },
+        {
+          "id": "mem-6",
+          "type": "text-multiple-choice",
+          "text": "Memorize: 5, 10, 15, 20. Which number is missing from: 5, 15, 20?",
+          "options": [
+            { "id": "A", "text": "5" },
+            { "id": "B", "text": "10" },
+            { "id": "C", "text": "15" },
+            { "id": "D", "text": "20" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 20,
+          "explanation": "The missing number is 10."
+        },
+        {
+          "id": "mem-7",
+          "type": "text-multiple-choice",
+          "text": "Memorize: SUN, MOON, STAR, PLANET. Which word is missing from: SUN, STAR, PLANET?",
+          "options": [
+            { "id": "A", "text": "SUN" },
+            { "id": "B", "text": "MOON" },
+            { "id": "C", "text": "STAR" },
+            { "id": "D", "text": "PLANET" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 20,
+          "explanation": "The missing word is MOON."
+        },
+        {
+          "id": "mem-8",
+          "type": "text-multiple-choice",
+          "text": "Memorize: WATER, FIRE, AIR, EARTH. Which word is missing from: WATER, AIR, EARTH?",
+          "options": [
+            { "id": "A", "text": "WATER" },
+            { "id": "B", "text": "FIRE" },
+            { "id": "C", "text": "AIR" },
+            { "id": "D", "text": "EARTH" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 20,
+          "explanation": "The missing word is FIRE."
+        },
+        {
+          "id": "mem-9",
+          "type": "text-multiple-choice",
+          "text": "Memorize: 7, 14, 21, 28. Which number is missing from: 7, 21, 28?",
+          "options": [
+            { "id": "A", "text": "7" },
+            { "id": "B", "text": "14" },
+            { "id": "C", "text": "21" },
+            { "id": "D", "text": "28" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 20,
+          "explanation": "The missing number is 14."
+        },
+        {
+          "id": "mem-10",
+          "type": "text-multiple-choice",
+          "text": "Memorize: MOUNTAIN, SEA, RIVER, LAKE. Which word is missing from: MOUNTAIN, RIVER, LAKE?",
+          "options": [
+            { "id": "A", "text": "MOUNTAIN" },
+            { "id": "B", "text": "SEA" },
+            { "id": "C", "text": "RIVER" },
+            { "id": "D", "text": "LAKE" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 20,
+          "explanation": "The missing word is SEA."
         }
       ]
     },
     {
       "id": "processing-speed",
       "name": "Processing Speed",
-      "description": "Quickly identify matching symbols under time pressure.",
+      "description": "Quickly identify correct answers under time pressure.",
       "weight": 0.10,
       "questions": [
         {
           "id": "ps-1",
           "type": "text-multiple-choice",
-          "text": "Which of these is NOT a prime number?",
+          "text": "5 + 3 + 8 + 2 = ?",
           "options": [
-            { "id": "A", "text": "7" },
-            { "id": "B", "text": "11" },
-            { "id": "C", "text": "9" },
-            { "id": "D", "text": "13" }
+            { "id": "A", "text": "16" },
+            { "id": "B", "text": "18" },
+            { "id": "C", "text": "20" },
+            { "id": "D", "text": "22" }
           ],
-          "correctAnswer": "C",
+          "correctAnswer": "B",
           "difficulty": "easy",
-          "timeLimit": 8,
-          "explanation": "9 = 3 × 3, so it is not prime."
+          "timeLimit": 10,
+          "explanation": "5+3=8, 8+8=16, 16+2=18."
         },
         {
           "id": "ps-2",
           "type": "text-multiple-choice",
-          "text": "Count the letter 'a': banana",
+          "text": "Which number is greater: 45 or 39?",
           "options": [
-            { "id": "A", "text": "2" },
-            { "id": "B", "text": "3" },
-            { "id": "C", "text": "4" },
-            { "id": "D", "text": "1" }
+            { "id": "A", "text": "39" },
+            { "id": "B", "text": "45" },
+            { "id": "C", "text": "Equal" },
+            { "id": "D", "text": "Cannot tell" }
           ],
           "correctAnswer": "B",
           "difficulty": "easy",
-          "timeLimit": 8,
-          "explanation": "b-A-n-A-n-A — three a's."
+          "timeLimit": 10,
+          "explanation": "45 > 39."
+        },
+        {
+          "id": "ps-3",
+          "type": "text-multiple-choice",
+          "text": "6 × 7 = ?",
+          "options": [
+            { "id": "A", "text": "36" },
+            { "id": "B", "text": "42" },
+            { "id": "C", "text": "48" },
+            { "id": "D", "text": "54" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 10,
+          "explanation": "6 × 7 = 42."
+        },
+        {
+          "id": "ps-4",
+          "type": "text-multiple-choice",
+          "text": "50 - 17 = ?",
+          "options": [
+            { "id": "A", "text": "23" },
+            { "id": "B", "text": "33" },
+            { "id": "C", "text": "43" },
+            { "id": "D", "text": "53" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 10,
+          "explanation": "50 - 17 = 33."
+        },
+        {
+          "id": "ps-5",
+          "type": "text-multiple-choice",
+          "text": "4 × 5 × 2 = ?",
+          "options": [
+            { "id": "A", "text": "20" },
+            { "id": "B", "text": "30" },
+            { "id": "C", "text": "40" },
+            { "id": "D", "text": "50" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": 10,
+          "explanation": "4×5=20, 20×2=40."
+        },
+        {
+          "id": "ps-6",
+          "type": "text-multiple-choice",
+          "text": "Which number is smaller: 88 or 77?",
+          "options": [
+            { "id": "A", "text": "77" },
+            { "id": "B", "text": "88" },
+            { "id": "C", "text": "Equal" },
+            { "id": "D", "text": "Cannot tell" }
+          ],
+          "correctAnswer": "A",
+          "difficulty": "easy",
+          "timeLimit": 10,
+          "explanation": "77 < 88."
+        },
+        {
+          "id": "ps-7",
+          "type": "text-multiple-choice",
+          "text": "60 ÷ 5 = ?",
+          "options": [
+            { "id": "A", "text": "10" },
+            { "id": "B", "text": "12" },
+            { "id": "C", "text": "14" },
+            { "id": "D", "text": "16" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 10,
+          "explanation": "60 ÷ 5 = 12."
+        },
+        {
+          "id": "ps-8",
+          "type": "text-multiple-choice",
+          "text": "12 + 18 + 5 = ?",
+          "options": [
+            { "id": "A", "text": "25" },
+            { "id": "B", "text": "30" },
+            { "id": "C", "text": "35" },
+            { "id": "D", "text": "40" }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": 10,
+          "explanation": "12+18=30, 30+5=35."
+        },
+        {
+          "id": "ps-9",
+          "type": "text-multiple-choice",
+          "text": "9 × 6 = ?",
+          "options": [
+            { "id": "A", "text": "45" },
+            { "id": "B", "text": "54" },
+            { "id": "C", "text": "63" },
+            { "id": "D", "text": "72" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 10,
+          "explanation": "9 × 6 = 54."
+        },
+        {
+          "id": "ps-10",
+          "type": "text-multiple-choice",
+          "text": "100 - 35 = ?",
+          "options": [
+            { "id": "A", "text": "55" },
+            { "id": "B", "text": "65" },
+            { "id": "C", "text": "75" },
+            { "id": "D", "text": "85" }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": 10,
+          "explanation": "100 - 35 = 65."
         }
       ]
     },
     {
       "id": "emotional-intelligence",
       "name": "Emotional Intelligence",
-      "description": "Identify emotions from situations.",
+      "description": "Identify emotions and choose empathetic responses.",
       "weight": 0.10,
       "questions": [
         {
           "id": "ei-1",
           "type": "text-multiple-choice",
-          "text": "Your friend just lost their job. What is the most supportive response?",
+          "text": "How would you react if a colleague cried in front of you?",
           "options": [
-            { "id": "A", "text": "Tell them it's their own fault" },
-            { "id": "B", "text": "Ignore it and change the subject" },
-            { "id": "C", "text": "Listen and offer support" },
-            { "id": "D", "text": "Say you're too busy to talk" }
+            { "id": "A", "text": "Ignore them." },
+            { "id": "B", "text": "Ask them what is wrong." },
+            { "id": "C", "text": "Laugh." },
+            { "id": "D", "text": "Leave immediately." }
           ],
-          "correctAnswer": "C",
+          "correctAnswer": "B",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "Active listening and offering support is the most empathetic response."
+          "explanation": "Empathy and support are important in such situations."
         },
         {
           "id": "ei-2",
           "type": "text-multiple-choice",
-          "text": "Someone is crying silently. What emotion are they most likely feeling?",
+          "text": "What would you do if a child was afraid of the dark?",
           "options": [
-            { "id": "A", "text": "Bored" },
-            { "id": "B", "text": "Happy" },
-            { "id": "C", "text": "Sad or distressed" },
-            { "id": "D", "text": "Excited" }
+            { "id": "A", "text": "Tell them to stop being scared." },
+            { "id": "B", "text": "Turn on a light and talk to them calmly." },
+            { "id": "C", "text": "Laugh with them." },
+            { "id": "D", "text": "Leave them alone in the dark." }
           ],
-          "correctAnswer": "C",
+          "correctAnswer": "B",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "Crying is typically associated with sadness or distress."
+          "explanation": "Calmness and support help overcome fear."
+        },
+        {
+          "id": "ei-3",
+          "type": "text-multiple-choice",
+          "text": "How would you handle a friend who is angry with you?",
+          "options": [
+            { "id": "A", "text": "Yell at them to calm down." },
+            { "id": "B", "text": "Listen and try to understand why they are angry." },
+            { "id": "C", "text": "Leave without saying anything." },
+            { "id": "D", "text": "Tell them they are wrong." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Listening and understanding are key to resolving conflicts."
+        },
+        {
+          "id": "ei-4",
+          "type": "text-multiple-choice",
+          "text": "What would you do if someone told you that you are not doing well at work?",
+          "options": [
+            { "id": "A", "text": "Ignore them." },
+            { "id": "B", "text": "Ask for feedback to improve." },
+            { "id": "C", "text": "Get angry and leave." },
+            { "id": "D", "text": "Cry." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Constructive criticism helps with personal growth."
+        },
+        {
+          "id": "ei-5",
+          "type": "text-multiple-choice",
+          "text": "What would you do if a team member was not cooperating?",
+          "options": [
+            { "id": "A", "text": "Exclude them from the team." },
+            { "id": "B", "text": "Talk to them privately to understand the problem." },
+            { "id": "C", "text": "Blame them publicly." },
+            { "id": "D", "text": "Ignore them." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Communication is key to solving problems."
+        },
+        {
+          "id": "ei-6",
+          "type": "text-multiple-choice",
+          "text": "How would you handle a colleague who speaks to you rudely?",
+          "options": [
+            { "id": "A", "text": "Respond in the same way." },
+            { "id": "B", "text": "Ask them to speak with respect." },
+            { "id": "C", "text": "Leave without saying anything." },
+            { "id": "D", "text": "Cry." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Respect is fundamental in any relationship."
+        },
+        {
+          "id": "ei-7",
+          "type": "text-multiple-choice",
+          "text": "What would you do if a friend was sad?",
+          "options": [
+            { "id": "A", "text": "Ignore them." },
+            { "id": "B", "text": "Ask what is wrong and listen." },
+            { "id": "C", "text": "Laugh with them." },
+            { "id": "D", "text": "Leave immediately." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Empathy and support are important."
+        },
+        {
+          "id": "ei-8",
+          "type": "text-multiple-choice",
+          "text": "How would you react if someone told you they don't like you?",
+          "options": [
+            { "id": "A", "text": "Get angry." },
+            { "id": "B", "text": "Ask them to explain why." },
+            { "id": "C", "text": "Leave without saying anything." },
+            { "id": "D", "text": "Cry." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Understanding the reasons helps improve relationships."
+        },
+        {
+          "id": "ei-9",
+          "type": "text-multiple-choice",
+          "text": "What would you do if a colleague had a personal problem and couldn't focus on work?",
+          "options": [
+            { "id": "A", "text": "Criticize them for lack of focus." },
+            { "id": "B", "text": "Offer help or support." },
+            { "id": "C", "text": "Ignore them." },
+            { "id": "D", "text": "Leave work." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Support during difficult times is important."
+        },
+        {
+          "id": "ei-10",
+          "type": "text-multiple-choice",
+          "text": "How would you react if a friend told you they disagree with your opinions?",
+          "options": [
+            { "id": "A", "text": "Get angry and argue." },
+            { "id": "B", "text": "Listen and discuss calmly." },
+            { "id": "C", "text": "Ignore them." },
+            { "id": "D", "text": "Leave without saying anything." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Calmness and dialogue are key to understanding."
         }
       ]
     },
     {
       "id": "creativity",
       "name": "Creativity",
-      "description": "Find unusual or original uses for common objects.",
+      "description": "Find unusual or original uses and ideas.",
       "weight": 0.10,
       "questions": [
         {
           "id": "cr-1",
           "type": "text-multiple-choice",
-          "text": "Which is the most unusual use for a brick?",
+          "text": "How many different ways can you use an A4 paper?",
           "options": [
-            { "id": "A", "text": "Build a wall" },
-            { "id": "B", "text": "Doorstop" },
-            { "id": "C", "text": "Bookend" },
-            { "id": "D", "text": "Float in water" }
-          ],
-          "correctAnswer": "D",
-          "difficulty": "easy",
-          "timeLimit": null,
-          "explanation": "Bricks sink — imagining one floating shows divergent thinking."
-        },
-        {
-          "id": "cr-2",
-          "type": "text-multiple-choice",
-          "text": "Which use for a newspaper is most creative?",
-          "options": [
-            { "id": "A", "text": "Read it" },
-            { "id": "B", "text": "Wrap fish" },
-            { "id": "C", "text": "Origami sculpture" },
-            { "id": "D", "text": "Light a fire" }
+            { "id": "A", "text": "1–2" },
+            { "id": "B", "text": "3–5" },
+            { "id": "C", "text": "More than 10" },
+            { "id": "D", "text": "None" }
           ],
           "correctAnswer": "C",
           "difficulty": "easy",
           "timeLimit": null,
-          "explanation": "Origami transforms the newspaper into a new form, showing creative thinking."
+          "explanation": "A4 paper can be used for writing, drawing, origami, crafts, and more."
+        },
+        {
+          "id": "cr-2",
+          "type": "text-multiple-choice",
+          "text": "What would you do with an old shoebox you no longer need?",
+          "options": [
+            { "id": "A", "text": "Throw it away." },
+            { "id": "B", "text": "Use it as storage." },
+            { "id": "C", "text": "Turn it into a small bed for a cat." },
+            { "id": "D", "text": "Leave it in the attic." }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Creative repurposing shows divergent thinking."
+        },
+        {
+          "id": "cr-3",
+          "type": "text-multiple-choice",
+          "text": "How would you decorate an empty wall with a budget of $10?",
+          "options": [
+            { "id": "A", "text": "Buy an expensive painting." },
+            { "id": "B", "text": "Paint the wall with colors." },
+            { "id": "C", "text": "Hang pictures from magazines." },
+            { "id": "D", "text": "Leave it empty." }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Creative use of low-cost materials is a great solution."
+        },
+        {
+          "id": "cr-4",
+          "type": "text-multiple-choice",
+          "text": "How would you solve a problem with no obvious solution?",
+          "options": [
+            { "id": "A", "text": "Ignore it." },
+            { "id": "B", "text": "Think outside the box." },
+            { "id": "C", "text": "Wait for someone else to solve it." },
+            { "id": "D", "text": "Get angry." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Creative thinking helps find innovative solutions."
+        },
+        {
+          "id": "cr-5",
+          "type": "text-multiple-choice",
+          "text": "What would you do if given a blank canvas and paints?",
+          "options": [
+            { "id": "A", "text": "Leave it blank." },
+            { "id": "B", "text": "Paint a landscape." },
+            { "id": "C", "text": "Create an abstract piece of art." },
+            { "id": "D", "text": "Use it as a coaster." }
+          ],
+          "correctAnswer": "C",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Creativity has no limits!"
+        },
+        {
+          "id": "cr-6",
+          "type": "text-multiple-choice",
+          "text": "How would you use an old non-working radio?",
+          "options": [
+            { "id": "A", "text": "Throw it away." },
+            { "id": "B", "text": "Turn it into a decorative item." },
+            { "id": "C", "text": "Keep it in the attic." },
+            { "id": "D", "text": "Sell it for parts." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Creative repurposing is a great solution."
+        },
+        {
+          "id": "cr-7",
+          "type": "text-multiple-choice",
+          "text": "What if asked to write a story with the theme 'The Journey of Water'?",
+          "options": [
+            { "id": "A", "text": "Copy an existing story." },
+            { "id": "B", "text": "Create a fantastic story with personal ideas." },
+            { "id": "C", "text": "Give up." },
+            { "id": "D", "text": "Write a boring description." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Creativity and imagination are key to a good story."
+        },
+        {
+          "id": "cr-8",
+          "type": "text-multiple-choice",
+          "text": "How would you decorate a room on a very limited budget?",
+          "options": [
+            { "id": "A", "text": "Buy expensive furniture." },
+            { "id": "B", "text": "Use DIY ideas with recycled materials." },
+            { "id": "C", "text": "Leave it empty." },
+            { "id": "D", "text": "Ask a decorator for help." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Creative use of low-cost materials is a great solution."
+        },
+        {
+          "id": "cr-9",
+          "type": "text-multiple-choice",
+          "text": "What would you do if given the opportunity to design a new game?",
+          "options": [
+            { "id": "A", "text": "Copy an existing game." },
+            { "id": "B", "text": "Create an innovative game with unique rules." },
+            { "id": "C", "text": "Give up." },
+            { "id": "D", "text": "Ask someone else to do it." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Creativity and innovation are key to a new game."
+        },
+        {
+          "id": "cr-10",
+          "type": "text-multiple-choice",
+          "text": "What would you do if given a box of paints and brushes?",
+          "options": [
+            { "id": "A", "text": "Keep them closed." },
+            { "id": "B", "text": "Paint a picture with imagination." },
+            { "id": "C", "text": "Throw them away." },
+            { "id": "D", "text": "Give them to someone else." }
+          ],
+          "correctAnswer": "B",
+          "difficulty": "easy",
+          "timeLimit": null,
+          "explanation": "Creativity and imagination are key to art."
         }
       ]
     }
