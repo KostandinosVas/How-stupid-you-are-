@@ -3,19 +3,30 @@ import { useRouter } from 'next/router';
 import MainLayout from '@/components/Layout/MainLayout';
 import Button from '@/components/Button/Button';
 import Card from '@/components/Card/Card';
-import questionsData from '@/data/questions.json';
+import allQuestions from '@/data/questions.json';
+import { Question } from '@/types';
+
+const SESSION_SIZE = 90;
+
+function pickRandom<T>(arr: T[], n: number): T[] {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy.slice(0, n);
+}
 
 export default function Home() {
   const router = useRouter();
-  const dimensionCount = questionsData.dimensions.length;
-  const totalQuestions = questionsData.dimensions.reduce(
-    (acc, d) => acc + d.questions.length,
-    0
-  );
+  const pool = allQuestions as unknown as Question[];
+  const totalInPool = pool.length;
 
   const handleStart = () => {
+    const session = pickRandom(pool, Math.min(SESSION_SIZE, totalInPool));
+    localStorage.setItem('cpa-session', JSON.stringify(session));
     localStorage.removeItem('cpa-answers');
-    router.push(`/test/${questionsData.dimensions[0].id}`);
+    router.push('/test');
   };
 
   return (
@@ -26,7 +37,7 @@ export default function Home() {
       <Card>
         <h1>Cognitive Profile Test</h1>
         <p>
-          This test measures {dimensionCount} cognitive dimensions across {totalQuestions} questions.
+          This test measures 8 cognitive dimensions across {SESSION_SIZE} randomly selected questions.
           It takes approximately 15–20 minutes.
         </p>
         <br />

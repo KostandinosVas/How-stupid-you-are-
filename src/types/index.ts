@@ -14,14 +14,16 @@ export interface QuestionOption {
 
 export interface Question {
   id: string;
-  text?: string;       // Optional for visual questions
-  type: QuestionType;
-  imageUrl?: string;   // For visual questions
+  dimension: string;
+  dimensionName: string;
+  text?: string;
+  type?: QuestionType;
+  imageUrl?: string;
   options: QuestionOption[];
   correctAnswer: string | string[];
-  difficulty: 'easy' | 'medium' | 'hard';
-  timeLimit: number | null; // in seconds
-  explanation?: string;
+  difficulty?: 'easy' | 'medium' | 'hard';
+  timeLimit: number | null;
+  explanation?: string | null;
 }
 
 export interface Dimension {
