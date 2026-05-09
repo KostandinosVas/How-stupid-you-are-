@@ -1,0 +1,726 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>IQ Quest - Level Up Your Mind</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800&amp;family=Rubik:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed-variant": "#5516be",
+              primary: "#6b38d4",
+              "surface-container-highest": "#e1e2e4",
+              "on-tertiary-container": "#fffbff",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#e1e2e4",
+              "on-secondary": "#ffffff",
+              surface: "#f8f9fb",
+              "primary-container": "#8455ef",
+              error: "#ba1a1a",
+              "surface-dim": "#d9dadc",
+              "on-secondary-container": "#5c2400",
+              "primary-fixed": "#e9ddff",
+              "inverse-surface": "#2e3132",
+              "on-secondary-fixed": "#341100",
+              "on-background": "#191c1e",
+              "primary-fixed-dim": "#d0bcff",
+              "tertiary-container": "#d23284",
+              "outline-variant": "#cbc3d7",
+              "on-tertiary-fixed-variant": "#8c0053",
+              "on-primary": "#ffffff",
+              "tertiary-fixed": "#ffd9e4",
+              "inverse-primary": "#d0bcff",
+              "on-error-container": "#93000a",
+              "secondary-container": "#fd761a",
+              "inverse-on-surface": "#f0f1f3",
+              "on-secondary-fixed-variant": "#783200",
+              secondary: "#9d4300",
+              outline: "#7b7486",
+              "surface-bright": "#f8f9fb",
+              tertiary: "#b10e6b",
+              "secondary-fixed-dim": "#ffb690",
+              "on-primary-container": "#fffbff",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed": "#3e0022",
+              "secondary-fixed": "#ffdbca",
+              "surface-container": "#edeef0",
+              "on-surface": "#191c1e",
+              "surface-tint": "#6d3bd7",
+              "surface-container-low": "#f3f4f6",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-fixed": "#23005c",
+              "on-surface-variant": "#494454",
+              "surface-container-high": "#e7e8ea",
+              "tertiary-fixed-dim": "#ffb0cd",
+              background: "#f8f9fb",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              md: "16px",
+              xs: "4px",
+              sm: "8px",
+              gutter: "12px",
+              "container-margin": "16px",
+              xl: "32px",
+              base: "4px",
+              lg: "24px",
+            },
+            fontFamily: {
+              "body-bold": ["Rubik"],
+              "stat-display": ["Anybody"],
+              "label-caps": ["Rubik"],
+              "body-md": ["Rubik"],
+              "headline-lg-mobile": ["Anybody"],
+              "headline-lg": ["Anybody"],
+              "headline-xl": ["Anybody"],
+            },
+            fontSize: {
+              "body-bold": ["16px", { lineHeight: "24px", fontWeight: "600" }],
+              "stat-display": [
+                "24px",
+                { lineHeight: "28px", fontWeight: "800" },
+              ],
+              "label-caps": [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "34px", fontWeight: "700" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "38px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "800",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #f8f9fb;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+      }
+      .shimmer {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        background-size: 200% 100%;
+      }
+    </style>
+  </head>
+  <body class="font-body-md text-on-surface selection:bg-primary/30">
+    <!-- TopNavBar -->
+    <nav
+      class="bg-surface-container-lowest/80 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-[0_8px_32px_rgba(107,56,212,0.05)]"
+    >
+      <div
+        class="flex justify-between items-center px-container-margin py-md w-full max-w-7xl mx-auto"
+      >
+        <div class="flex items-center gap-sm">
+          <span
+            class="font-stat-display text-stat-display text-primary tracking-tighter"
+            >IQ Quest</span
+          >
+        </div>
+        <div class="hidden md:flex items-center gap-lg">
+          <a
+            class="text-primary font-body-bold border-b-4 border-primary px-sm py-xs"
+            href="#"
+            >Games</a
+          >
+          <a
+            class="text-on-surface-variant font-body-md hover:scale-105 transition-transform duration-200 hover:text-primary"
+            href="#"
+            >Levels</a
+          >
+          <a
+            class="text-on-surface-variant font-body-md hover:scale-105 transition-transform duration-200 hover:text-primary"
+            href="#"
+            >Leaderboard</a
+          >
+          <a
+            class="text-on-surface-variant font-body-md hover:scale-105 transition-transform duration-200 hover:text-primary"
+            href="#"
+            >Badges</a
+          >
+        </div>
+        <div class="flex items-center gap-md">
+          <button
+            class="hidden md:block bg-primary text-on-primary px-lg py-sm rounded-full font-body-bold shadow-[0_4px_12px_rgba(107,56,212,0.3)] hover:scale-105 active:scale-95 transition-all duration-200"
+          >
+            Start Playing
+          </button>
+          <div class="flex items-center gap-sm">
+            <span
+              class="material-symbols-outlined text-on-surface-variant hover:scale-105 cursor-pointer"
+              data-icon="settings"
+              >settings</span
+            >
+            <div
+              class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden"
+            >
+              <img
+                alt="User profile avatar"
+                class="w-full h-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkkDHRtGTAnGvJhmGgzHvmWAq4iibevdY7HAGuZB2brz2LpEBhJj0AT39fsQsJdLFL0PBKiFUsRyp7q-4_abGsGdlLjsUevxeSm_c_8vz7aE4FxGBF6fviXHQ1I2UPf99SmauLTA2Yn_oHkeZpMul_cmcmyshfDA948KEwMbGfimZnS1Q77ms92T5QU6Z5DCkJKB5VsE3SVCKhQGs9m7uuNT7LJTtPoO5bRjE_2FxgolhglmzW5PAJEu8SlPv3f7SQOORX7MuPApc"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-container-margin py-xl space-y-xl">
+      <!-- Hero Journey Section -->
+      <section
+        class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary via-primary-container to-secondary-container p-lg md:p-xl text-on-primary"
+      >
+        <div class="relative z-10 grid md:grid-cols-2 gap-xl items-center">
+          <div class="space-y-md">
+            <span
+              class="inline-block px-md py-xs bg-white/20 backdrop-blur-md rounded-full font-label-caps text-label-caps uppercase tracking-widest"
+              >Adventure Awaits</span
+            >
+            <h1 class="font-headline-xl text-headline-xl leading-tight">
+              Master Your Mind, Conquer the Quest.
+            </h1>
+            <p class="text-body-md opacity-90 max-w-md">
+              Transform clinical assessments into a high-octane journey. Level
+              up your cognitive skills and climb the global ranks today.
+            </p>
+            <div class="flex flex-wrap gap-md pt-md">
+              <button
+                class="bg-white text-primary px-xl py-md rounded-2xl font-body-bold shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-sm"
+              >
+                <span
+                  class="material-symbols-outlined"
+                  data-icon="play_arrow"
+                  data-weight="fill"
+                  >play_arrow</span
+                >
+                Resume Journey
+              </button>
+              <button
+                class="bg-primary-container/30 backdrop-blur-md border-2 border-white/30 text-white px-xl py-md rounded-2xl font-body-bold hover:bg-white/10 transition-all"
+              >
+                View Roadmap
+              </button>
+            </div>
+          </div>
+          <div class="relative hidden md:block group">
+            <div
+              class="absolute -inset-4 bg-white/10 blur-3xl rounded-full"
+            ></div>
+            <img
+              alt="Mascot Graphic"
+              class="relative w-full h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500 rounded-3xl"
+              data-alt="A stylized 3D rendered brain floating in a vibrant purple and orange digital space, surrounded by glowing geometric shapes and floating crystal shards. The lighting is high-energy with neon accents, creating a playful and exciting atmosphere that feels like a modern mobile video game."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfYICIeujjWqIybYhCp1TGYOaqeD-XPdhBFi6-UyXEs0blUSA_Vj-FHre5xtVipK6DED112j64WDTa64XetVLHRcLAhLdK3cwQ2Wz5c_uUyzFLPm16TEhQsKt5R3VXeSVUVDRjYByfZvbiiUGPcGpxI17qx9BXTfrPqX2nYPDvjKCYSmDLfvDn6wOO3SeMqjfSASi7THKyJNIBiqoMFh35vRVlWOcWqeJYyeXylbYeku9CIefWJDKyyKePciYw9V9Hrd6ZVcw8PaA"
+            />
+          </div>
+        </div>
+      </section>
+      <!-- Stats & Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+        <!-- Daily Challenges -->
+        <div class="md:col-span-8 space-y-lg">
+          <div class="flex justify-between items-center">
+            <h2
+              class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface"
+            >
+              Daily Challenges
+            </h2>
+            <span
+              class="text-primary font-body-bold cursor-pointer hover:underline"
+              >View All</span
+            >
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+            <!-- Challenge Card 1 -->
+            <div
+              class="bg-surface-container-lowest border-b-4 border-primary p-md rounded-xl shadow-[0_8px_32px_rgba(107,56,212,0.05)] hover:scale-[1.02] transition-all cursor-pointer group"
+            >
+              <div class="flex justify-between items-start mb-md">
+                <div
+                  class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary"
+                >
+                  <span
+                    class="material-symbols-outlined text-[32px]"
+                    data-icon="psychology"
+                    >psychology</span
+                  >
+                </div>
+                <span
+                  class="px-sm py-xs bg-secondary-container/10 text-secondary-fixed-dim rounded-lg font-label-caps text-label-caps"
+                  >XP +500</span
+                >
+              </div>
+              <h3 class="font-body-bold text-lg mb-xs">Pattern Recon</h3>
+              <p class="text-on-surface-variant text-sm mb-md">
+                Identify the missing sequence in 60 seconds.
+              </p>
+              <div
+                class="w-full bg-surface-container rounded-full h-2 mb-md overflow-hidden"
+              >
+                <div
+                  class="bg-gradient-to-r from-primary to-primary-container h-full w-[65%] shimmer"
+                ></div>
+              </div>
+              <button
+                class="w-full py-sm bg-primary text-on-primary rounded-lg font-body-bold group-hover:bg-primary-container transition-colors"
+              >
+                Play Now
+              </button>
+            </div>
+            <!-- Challenge Card 2 -->
+            <div
+              class="bg-surface-container-lowest border-b-4 border-secondary p-md rounded-xl shadow-[0_8px_32px_rgba(107,56,212,0.05)] hover:scale-[1.02] transition-all cursor-pointer group"
+            >
+              <div class="flex justify-between items-start mb-md">
+                <div
+                  class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary"
+                >
+                  <span
+                    class="material-symbols-outlined text-[32px]"
+                    data-icon="speed"
+                    >speed</span
+                  >
+                </div>
+                <span
+                  class="px-sm py-xs bg-tertiary-container/10 text-tertiary text-label-caps font-bold rounded-lg"
+                  >LEGENDARY</span
+                >
+              </div>
+              <h3 class="font-body-bold text-lg mb-xs">Rapid Logic</h3>
+              <p class="text-on-surface-variant text-sm mb-md">
+                High-speed deduction test. No room for error.
+              </p>
+              <div
+                class="w-full bg-surface-container rounded-full h-2 mb-md overflow-hidden"
+              >
+                <div
+                  class="bg-gradient-to-r from-secondary to-secondary-container h-full w-[20%] shimmer"
+                ></div>
+              </div>
+              <button
+                class="w-full py-sm bg-secondary text-on-secondary rounded-lg font-body-bold group-hover:bg-secondary-container transition-colors"
+              >
+                Start Challenge
+              </button>
+            </div>
+          </div>
+          <!-- Bento: Your Progress -->
+          <div
+            class="bg-white rounded-3xl p-lg shadow-[0_8px_32px_rgba(107,56,212,0.05)] overflow-hidden relative group"
+          >
+            <div
+              class="flex flex-col md:flex-row gap-lg items-center relative z-10"
+            >
+              <div class="flex-shrink-0 relative">
+                <svg class="w-32 h-32 transform -rotate-90">
+                  <circle
+                    class="text-surface-container-high"
+                    cx="64"
+                    cy="64"
+                    fill="transparent"
+                    r="58"
+                    stroke="currentColor"
+                    stroke-width="12"
+                  ></circle>
+                  <circle
+                    class="text-primary"
+                    cx="64"
+                    cy="64"
+                    fill="transparent"
+                    r="58"
+                    stroke="currentColor"
+                    stroke-dasharray="364.4"
+                    stroke-dashoffset="100"
+                    stroke-width="12"
+                  ></circle>
+                </svg>
+                <div
+                  class="absolute inset-0 flex flex-col items-center justify-center"
+                >
+                  <span class="font-stat-display text-stat-display text-primary"
+                    >72%</span
+                  >
+                  <span
+                    class="text-[10px] font-label-caps text-on-surface-variant uppercase"
+                    >Ranked</span
+                  >
+                </div>
+              </div>
+              <div class="text-center md:text-left space-y-sm">
+                <h3
+                  class="font-headline-lg-mobile md:text-headline-lg font-headline-lg"
+                >
+                  Global Standing: Top 10%
+                </h3>
+                <p class="text-on-surface-variant">
+                  You've outperformed 12,400 players this week! One more perfect
+                  game to reach Platinum League.
+                </p>
+                <div class="flex gap-sm justify-center md:justify-start">
+                  <span
+                    class="px-md py-xs bg-primary/10 text-primary rounded-full font-label-caps text-label-caps"
+                    >IQ: 138 (Est.)</span
+                  >
+                  <span
+                    class="px-md py-xs bg-tertiary/10 text-tertiary rounded-full font-label-caps text-label-caps"
+                    >Win Streak: 5</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="absolute right-0 top-0 opacity-10 group-hover:opacity-20 transition-opacity"
+            >
+              <span
+                class="material-symbols-outlined text-[200px]"
+                data-icon="trending_up"
+                >trending_up</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Global Leaderboard -->
+        <aside class="md:col-span-4 space-y-lg">
+          <div class="flex justify-between items-center">
+            <h2 class="font-headline-lg-mobile text-on-surface">Leaderboard</h2>
+            <span
+              class="material-symbols-outlined text-on-surface-variant"
+              data-icon="military_tech"
+              >military_tech</span
+            >
+          </div>
+          <div
+            class="bg-surface-container-lowest rounded-3xl p-md shadow-[0_8px_32px_rgba(107,56,212,0.05)] border border-surface-container-high space-y-sm"
+          >
+            <!-- Leaderboard Item 1 -->
+            <div
+              class="flex items-center gap-md p-sm rounded-2xl bg-secondary-container/5 border border-secondary/10"
+            >
+              <div class="font-stat-display text-secondary text-xl w-6">1</div>
+              <img
+                alt="Rank 1"
+                class="w-10 h-10 rounded-full"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjTupvUBsKkpskm9c0ysJTXh9KYCisRFa_1IPL4BBa3q3S9dCamY-rERdSyM11mtj01v4iWf98J3OJu_LXDDqahxxuZdcf2sGWuz5DWq8p7sFPr0qmNtXLiyPpsGw084ROrfIQE4pcsm8FqSd7pYnnq-w-esm_TAiXIji1-Gb1dSH-sJq1VZRgLptWtJTuOlRoVit0_9ApqEyecFFvR7ruSp5uTf61z2jAdL6ozEjlVJM4cDFQUT82Ctq1nuPqAxgv7ztVjlld1KM"
+              />
+              <div class="flex-grow">
+                <div class="font-body-bold text-sm">MindMaster_99</div>
+                <div
+                  class="text-[10px] text-on-surface-variant uppercase font-label-caps"
+                >
+                  15,420 XP
+                </div>
+              </div>
+              <span
+                class="material-symbols-outlined text-secondary"
+                data-icon="workspace_premium"
+                data-weight="fill"
+                >workspace_premium</span
+              >
+            </div>
+            <!-- Leaderboard Item 2 -->
+            <div
+              class="flex items-center gap-md p-sm rounded-2xl hover:bg-surface-container transition-colors"
+            >
+              <div
+                class="font-stat-display text-on-surface-variant text-xl w-6"
+              >
+                2
+              </div>
+              <img
+                alt="Rank 2"
+                class="w-10 h-10 rounded-full"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt9RHFLnFssGwcnLmgU5ypcYlCjQPXp4JGJl9ekPR1DyAkW4fVUyH6dFKY5apUhgEFzb0_fRfZVtD0g01lGzcs66FHr_xZSr1Uv1_lbLgs8mhd742UhEHZwzZ5bbJidQz4O_MBpb6-J5jblYBBoqjs1b5gC8ayUxa8tikFKwfNJKmiDYIelNOxPeZ4rYIuCM3Nomym1tHA7vB0Fk4E-UF6o7XFQC_Ll3dxBZs_nn-lx_uptY_TfbKq_wBh92X1zBi-9NG3s2tm1DI"
+              />
+              <div class="flex-grow">
+                <div class="font-body-bold text-sm">LogicQueen</div>
+                <div
+                  class="text-[10px] text-on-surface-variant uppercase font-label-caps"
+                >
+                  14,800 XP
+                </div>
+              </div>
+            </div>
+            <!-- Leaderboard Item 3 -->
+            <div
+              class="flex items-center gap-md p-sm rounded-2xl hover:bg-surface-container transition-colors"
+            >
+              <div
+                class="font-stat-display text-on-surface-variant text-xl w-6"
+              >
+                3
+              </div>
+              <img
+                alt="Rank 3"
+                class="w-10 h-10 rounded-full"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBgp9n7IX59VXvoi1O_WfPQZA99LZlst04MCnze5vBgw5Ujbh-gkOarxcJr_j0Q0dmIZEWCI6dz00rTp9VimRTzE9TtIqAUva8G1PyIxu2hOnZGNkxQyk4gR6NulFrk3DzQem9t6a9dC3BbhzUmSTWyMUkz9WuLfvFsC4VM7CLj_IfasyoL5IdgKMv7wwGURPdtrJFZcXHOKluo3qRuQyaVPEopWHxnppVdGx274moe6EYijMPKmRJUbsKsiNWtLgJNkQcws2ovRg"
+              />
+              <div class="flex-grow">
+                <div class="font-body-bold text-sm">NeoThinker</div>
+                <div
+                  class="text-[10px] text-on-surface-variant uppercase font-label-caps"
+                >
+                  14,150 XP
+                </div>
+              </div>
+            </div>
+            <div
+              class="pt-md border-t border-surface-container-high text-center"
+            >
+              <span
+                class="text-primary font-body-bold text-sm cursor-pointer hover:underline"
+                >View Full Leaderboard</span
+              >
+            </div>
+          </div>
+          <!-- Badge Rewards Section -->
+          <div
+            class="bg-gradient-to-br from-tertiary/10 to-primary/10 rounded-3xl p-lg border border-tertiary/20"
+          >
+            <h3 class="font-body-bold mb-md flex items-center gap-sm">
+              <span
+                class="material-symbols-outlined text-tertiary"
+                data-icon="trophy"
+                >trophy</span
+              >
+              Recent Badges
+            </h3>
+            <div class="grid grid-cols-3 gap-sm">
+              <div
+                class="aspect-square bg-white rounded-2xl flex items-center justify-center shadow-sm group hover:scale-110 transition-transform"
+              >
+                <span
+                  class="material-symbols-outlined text-secondary text-3xl"
+                  data-icon="bolt"
+                  data-weight="fill"
+                  >bolt</span
+                >
+              </div>
+              <div
+                class="aspect-square bg-white rounded-2xl flex items-center justify-center shadow-sm group hover:scale-110 transition-transform"
+              >
+                <span
+                  class="material-symbols-outlined text-primary text-3xl"
+                  data-icon="star"
+                  data-weight="fill"
+                  >star</span
+                >
+              </div>
+              <div
+                class="aspect-square bg-white/50 border-2 border-dashed border-outline-variant rounded-2xl flex items-center justify-center"
+              >
+                <span
+                  class="material-symbols-outlined text-outline-variant"
+                  data-icon="lock"
+                  >lock</span
+                >
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+      <!-- Featured Categories Layout -->
+      <section class="space-y-lg pb-xl">
+        <h2
+          class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface"
+        >
+          Explore Domains
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+          <!-- Domain 1 -->
+          <div
+            class="relative group cursor-pointer overflow-hidden rounded-3xl aspect-[4/5]"
+          >
+            <img
+              alt="Logic"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              data-alt="An abstract visualization of logical reasoning featuring crystalline structures and mathematical symbols floating in a deep violet and orange ethereal environment. The lighting is focused and dramatic, highlighting sharp edges and translucent facets, suggesting a high-level intellectual challenge."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-gK47qOnJFaQlLw8wlou5f5LW-f3oI_n_yjsI58vfygBC6SL_Ekp0LXfLR44tNxjK2OTZzssbiReZJ49BG80Y2Xv7Ov3zcL9uVdOk5AkEsQhEjOGxb2gVyMZBiLE5H7xLbdnzvvMf6mhKQTqTFvFH09YzNbNC0x2j9nVZ3G5ZCg8eHu2RepBfuZpacvdcu8EgQzDPwD7gBpd3EQELBfVYNApumychiqH8pnQiXwjviqcLqnyxdm0445_a9PaE83PGkFs-1_zjma8"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-lg flex flex-col justify-end"
+            >
+              <span
+                class="material-symbols-outlined text-white mb-sm"
+                data-icon="grid_view"
+                >grid_view</span
+              >
+              <h4 class="text-white font-body-bold text-lg">
+                Logical Reasoning
+              </h4>
+              <p class="text-white/70 text-xs">24 Challenges</p>
+            </div>
+          </div>
+          <!-- Domain 2 -->
+          <div
+            class="relative group cursor-pointer overflow-hidden rounded-3xl aspect-[4/5]"
+          >
+            <img
+              alt="Spatial"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              data-alt="A 3D abstract background representing spatial awareness with floating spheres, cubes, and rings arranged in a playful, gravity-defying composition. The color scheme uses soft lilac, vibrant orange, and light grays with smooth clay-like textures and ambient occlusion shadows."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPD2kjY0k4UzXtyLrPKn2p8Jdgme7S8Eic7ESgbtjDjG3ZNcnkTrKHRZwxL4pJ30dsOlNohVJCHFN8GLdPjVqpwB61SSboY2la3TNjtzONEeYe9GYYPLds5dVCc9e11HQl8ws2sraDG8IYi1uO0qiz66ucDq9XhJwR0OXfXPDDpz7VL07UK4C9boz7NoltZysgX0XFzUXAEzb3NJzJm3zLMKxg8bSQGrWZ_5PzsR5E6a__V9N9aC74-VHpZXApPJy_4nY8hCMLPPM"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-lg flex flex-col justify-end"
+            >
+              <span
+                class="material-symbols-outlined text-white mb-sm"
+                data-icon="layers"
+                >layers</span
+              >
+              <h4 class="text-white font-body-bold text-lg">
+                Spatial Intelligence
+              </h4>
+              <p class="text-white/70 text-xs">18 Challenges</p>
+            </div>
+          </div>
+          <!-- Domain 3 -->
+          <div
+            class="relative group cursor-pointer overflow-hidden rounded-3xl aspect-[4/5]"
+          >
+            <img
+              alt="Verbal"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              data-alt="Digital representation of linguistic skills featuring glowing letters and words flowing like a river through a futuristic landscape of purple and deep navy. Soft neon glows illuminate the paths, creating a sense of motion and fluid communication in a highly modern 3D aesthetic."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKBmc-bXwmjCWh6NRGyvWWVL5-aKLNrIOG4tqD1sCnrGIyeBVorNXfh5nBX1DzrRlLRwwjWVH0Pr2Q7NVTlFLZwEIPGMvNA9yyQ_QM8tyweTdu9rKYHdtOZKtFdfN1SoXPvUNSPVbCtjWxSkkdoeE1L4mzY5TU0Ar9UmncOT9eVFKyQ8nKkgx4d4d9oC2dpRCmpK0bJsTkrz3CzQu2hsU4ckrsNNptNySkuboNkc6gBJFfQxm9aXF2iPfb7S4lbdUpXlKRoT_DFJQ"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-lg flex flex-col justify-end"
+            >
+              <span
+                class="material-symbols-outlined text-white mb-sm"
+                data-icon="translate"
+                >translate</span
+              >
+              <h4 class="text-white font-body-bold text-lg">Verbal Fluency</h4>
+              <p class="text-white/70 text-xs">12 Challenges</p>
+            </div>
+          </div>
+          <!-- Domain 4 -->
+          <div
+            class="relative group cursor-pointer overflow-hidden rounded-3xl aspect-[4/5]"
+          >
+            <img
+              alt="Numerical"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              data-alt="Abstract 3D visualization of numerical data and mathematical equations rendered as glowing light trails and floating glass panels. The scene is set in a high-contrast environment with deep purples and electric oranges, embodying a sophisticated and fast-paced numerical quest."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT-lHnid5Gf-l2XXaOctA___DVrYDPol6aygLTq4fToc_dy024lpfG9_LPfpFFmKcwYFesD2Vza-K97COwntGqCnR61wKS-TvAXXBo_KEfv20WfhHtVrGBGrFI9jCnckY6OaLEc67oIKUYgP-PGWoYhFdYTUhPVfIz6C0T9Arx61mM99Xi1j835Y2Pe7zVSA0lmpsA6uFdpCiT5Cu42y2uybel4VcyfB6PKAosup_guC0IncIM5vH3yHE-pk6CGQsifMLQ5GlS88Y"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-lg flex flex-col justify-end"
+            >
+              <span
+                class="material-symbols-outlined text-white mb-sm"
+                data-icon="calculate"
+                >calculate</span
+              >
+              <h4 class="text-white font-body-bold text-lg">Numerical Logic</h4>
+              <p class="text-white/70 text-xs">30 Challenges</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav
+      class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-gutter py-sm md:hidden bg-surface-container-lowest/90 backdrop-blur-lg rounded-t-xl shadow-[0_-4px_24px_rgba(107,56,212,0.1)]"
+    >
+      <div
+        class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1.5 transition-all duration-300 scale-110"
+      >
+        <span
+          class="material-symbols-outlined"
+          data-icon="sports_esports"
+          data-weight="fill"
+          >sports_esports</span
+        >
+        <span class="font-label-caps text-[10px] uppercase">Games</span>
+      </div>
+      <div
+        class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 hover:bg-primary-container/10 rounded-xl"
+      >
+        <span class="material-symbols-outlined" data-icon="trending_up"
+          >trending_up</span
+        >
+        <span class="font-label-caps text-[10px] uppercase">Levels</span>
+      </div>
+      <div
+        class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 hover:bg-primary-container/10 rounded-xl"
+      >
+        <span class="material-symbols-outlined" data-icon="leaderboard"
+          >leaderboard</span
+        >
+        <span class="font-label-caps text-[10px] uppercase">Leaderboard</span>
+      </div>
+      <div
+        class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 hover:bg-primary-container/10 rounded-xl"
+      >
+        <span class="material-symbols-outlined" data-icon="military_tech"
+          >military_tech</span
+        >
+        <span class="font-label-caps text-[10px] uppercase">Badges</span>
+      </div>
+    </nav>
+    <!-- Floating Action Button -->
+    <button
+      class="fixed right-container-margin bottom-container-margin mb-20 md:mb-0 z-40 bg-primary text-on-primary w-14 h-14 rounded-2xl shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 md:w-auto md:px-lg md:gap-sm"
+    >
+      <span class="material-symbols-outlined" data-icon="rocket_launch"
+        >rocket_launch</span
+      >
+      <span class="hidden md:inline font-body-bold">Quick Start</span>
+    </button>
+  </body>
+</html>
