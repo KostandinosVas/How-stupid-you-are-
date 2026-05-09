@@ -94,7 +94,7 @@ export default function TestPage() {
 
   return (
     <MainLayout title={currentQuestion.dimensionName} progress={progress}>
-      {timeLimit > 0 && <Timer timeLeft={timeLeft} />}
+      {timeLimit > 0 && <Timer timeLeft={timeLeft} totalTime={timeLimit} />}
       <MetaBar>
         <DimBadge>{currentQuestion.dimensionName}</DimBadge>
         <CounterText>
