@@ -33,7 +33,7 @@ const numberPop = keyframes`
 /* ─── Styled components ─── */
 const Wrapper = styled.div<{ $warn: boolean; $crit: boolean }>`
   position: fixed;
-  top: calc(var(--header-height, 4rem) + 0.5rem);
+  bottom: 15rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 300;
