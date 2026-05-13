@@ -172,9 +172,7 @@ const HeroVisual = styled.div`
 `;
 const BrainCard = styled.div`
   position: relative; width: 320px; height: 320px;
-  background: linear-gradient(135deg,#6b38d4 0%,#4f46e5 60%,#2563eb 100%);
-  background-size: 200% 200%;
-  animation: ${gradAni} 6s ease infinite;
+  background: url('/images/brain01.png') center/cover no-repeat;
   border-radius: 2rem;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 24px 64px rgba(107,56,212,0.35);
@@ -526,7 +524,7 @@ export default function Home() {
             </HeroContent>
             <HeroVisual>
               <BrainCard>
-                <BrainEmoji>🧠</BrainEmoji>
+                
                 <FloatTag $top="-14px" $right="-14px">
                   <TagDot $color="#10b981" />IQ: 127 Estimated
                 </FloatTag>

@@ -1650,55 +1650,55 @@
     "id": "vi-012",
     "dimension": "verbal-intelligence",
     "dimensionName": "Verbal Intelligence",
-    "text": "Which spelling is correct: 'Decide' or 'Decide'?",
+    "text": "Which of the following words is spelled correctly?",
     "options": [
       {
         "id": "A",
-        "text": "Decide"
+        "text": "Necessary"
       },
       {
         "id": "B",
-        "text": "Decide"
+        "text": "Neccessary"
       },
       {
         "id": "C",
-        "text": "Both"
+        "text": "Necesary"
       },
       {
         "id": "D",
-        "text": "Neither"
+        "text": "Necessery"
       }
     ],
     "correctAnswer": "A",
     "timeLimit": null,
-    "explanation": "Correct spelling: 'Decide'."
+    "explanation": "'Necessary' — one 'c', two 's'. A common misspelling adds an extra 'c'."
   },
   {
     "id": "vi-013",
     "dimension": "verbal-intelligence",
     "dimensionName": "Verbal Intelligence",
-    "text": "Which spelling is correct: 'Examine' or 'Examine'?",
+    "text": "Which of the following words is spelled correctly?",
     "options": [
       {
         "id": "A",
-        "text": "Examine"
+        "text": "Accomodate"
       },
       {
         "id": "B",
-        "text": "Examine"
+        "text": "Accommodate"
       },
       {
         "id": "C",
-        "text": "Both"
+        "text": "Acommodate"
       },
       {
         "id": "D",
-        "text": "Neither"
+        "text": "Acomodate"
       }
     ],
-    "correctAnswer": "A",
+    "correctAnswer": "B",
     "timeLimit": null,
-    "explanation": "Correct spelling: 'Examine'."
+    "explanation": "'Accommodate' has two 'c' letters and two 'm' letters."
   },
   {
     "id": "vi-014",
@@ -2646,280 +2646,10 @@
     "explanation": null
   },
   {
-    "id": "m-001",
-    "dimension": "memory",
-    "dimensionName": "Memory",
-    "text": "Memorize: DOG, HOUSE, CAR, BOOK. Which word is missing from: DOG, HOUSE, BOOK?",
-    "options": [
-      {
-        "id": "A",
-        "text": "DOG"
-      },
-      {
-        "id": "B",
-        "text": "HOUSE"
-      },
-      {
-        "id": "C",
-        "text": "CAR"
-      },
-      {
-        "id": "D",
-        "text": "BOOK"
-      }
-    ],
-    "correctAnswer": "C",
-    "timeLimit": 20,
-    "explanation": "The missing word from the original list is CAR."
-  },
-  {
-    "id": "m-002",
-    "dimension": "memory",
-    "dimensionName": "Memory",
-    "text": "Memorize: 3, 7, 2, 9. Which number is missing from: 3, 2, 9?",
-    "options": [
-      {
-        "id": "A",
-        "text": "2"
-      },
-      {
-        "id": "B",
-        "text": "3"
-      },
-      {
-        "id": "C",
-        "text": "7"
-      },
-      {
-        "id": "D",
-        "text": "9"
-      }
-    ],
-    "correctAnswer": "C",
-    "timeLimit": 20,
-    "explanation": "The missing number is 7."
-  },
-  {
-    "id": "m-003",
-    "dimension": "memory",
-    "dimensionName": "Memory",
-    "text": "Memorize: CAT, MOUSE, CHICKEN, DOG. Which word is missing from: CAT, CHICKEN, DOG?",
-    "options": [
-      {
-        "id": "A",
-        "text": "CAT"
-      },
-      {
-        "id": "B",
-        "text": "MOUSE"
-      },
-      {
-        "id": "C",
-        "text": "CHICKEN"
-      },
-      {
-        "id": "D",
-        "text": "DOG"
-      }
-    ],
-    "correctAnswer": "B",
-    "timeLimit": 20,
-    "explanation": "The missing word is MOUSE."
-  },
-  {
-    "id": "m-004",
-    "dimension": "memory",
-    "dimensionName": "Memory",
-    "text": "Memorize: 12, 45, 78, 23. Which number is missing from: 12, 78, 23?",
-    "options": [
-      {
-        "id": "A",
-        "text": "12"
-      },
-      {
-        "id": "B",
-        "text": "23"
-      },
-      {
-        "id": "C",
-        "text": "45"
-      },
-      {
-        "id": "D",
-        "text": "78"
-      }
-    ],
-    "correctAnswer": "C",
-    "timeLimit": 20,
-    "explanation": "The missing number is 45."
-  },
-  {
-    "id": "m-005",
-    "dimension": "memory",
-    "dimensionName": "Memory",
-    "text": "Memorize: FLOWER, TREE, SEA, MOUNTAIN. Which word is missing from: FLOWER, SEA, MOUNTAIN?",
-    "options": [
-      {
-        "id": "A",
-        "text": "FLOWER"
-      },
-      {
-        "id": "B",
-        "text": "TREE"
-      },
-      {
-        "id": "C",
-        "text": "SEA"
-      },
-      {
-        "id": "D",
-        "text": "MOUNTAIN"
-      }
-    ],
-    "correctAnswer": "B",
-    "timeLimit": 20,
-    "explanation": "The missing word is TREE."
-  },
-  {
-    "id": "m-006",
-    "dimension": "memory",
-    "dimensionName": "Memory",
-    "text": "Memorize: 5, 10, 15, 20. Which number is missing from: 5, 15, 20?",
-    "options": [
-      {
-        "id": "A",
-        "text": "5"
-      },
-      {
-        "id": "B",
-        "text": "10"
-      },
-      {
-        "id": "C",
-        "text": "15"
-      },
-      {
-        "id": "D",
-        "text": "20"
-      }
-    ],
-    "correctAnswer": "B",
-    "timeLimit": 20,
-    "explanation": "The missing number is 10."
-  },
-  {
-    "id": "m-007",
-    "dimension": "memory",
-    "dimensionName": "Memory",
-    "text": "Memorize: SUN, MOON, STAR, PLANET. Which word is missing from: SUN, STAR, PLANET?",
-    "options": [
-      {
-        "id": "A",
-        "text": "SUN"
-      },
-      {
-        "id": "B",
-        "text": "MOON"
-      },
-      {
-        "id": "C",
-        "text": "STAR"
-      },
-      {
-        "id": "D",
-        "text": "PLANET"
-      }
-    ],
-    "correctAnswer": "B",
-    "timeLimit": 20,
-    "explanation": "The missing word is MOON."
-  },
-  {
-    "id": "m-008",
-    "dimension": "memory",
-    "dimensionName": "Memory",
-    "text": "Memorize: WATER, FIRE, AIR, EARTH. Which word is missing from: WATER, AIR, EARTH?",
-    "options": [
-      {
-        "id": "A",
-        "text": "WATER"
-      },
-      {
-        "id": "B",
-        "text": "FIRE"
-      },
-      {
-        "id": "C",
-        "text": "AIR"
-      },
-      {
-        "id": "D",
-        "text": "EARTH"
-      }
-    ],
-    "correctAnswer": "B",
-    "timeLimit": 20,
-    "explanation": "The missing word is FIRE."
-  },
-  {
-    "id": "m-009",
-    "dimension": "memory",
-    "dimensionName": "Memory",
-    "text": "Memorize: 7, 14, 21, 28. Which number is missing from: 7, 21, 28?",
-    "options": [
-      {
-        "id": "A",
-        "text": "7"
-      },
-      {
-        "id": "B",
-        "text": "14"
-      },
-      {
-        "id": "C",
-        "text": "21"
-      },
-      {
-        "id": "D",
-        "text": "28"
-      }
-    ],
-    "correctAnswer": "B",
-    "timeLimit": 20,
-    "explanation": "The missing number is 14."
-  },
-  {
-    "id": "m-010",
-    "dimension": "memory",
-    "dimensionName": "Memory",
-    "text": "Memorize: MOUNTAIN, SEA, RIVER, LAKE. Which word is missing from: MOUNTAIN, RIVER, LAKE?",
-    "options": [
-      {
-        "id": "A",
-        "text": "MOUNTAIN"
-      },
-      {
-        "id": "B",
-        "text": "SEA"
-      },
-      {
-        "id": "C",
-        "text": "RIVER"
-      },
-      {
-        "id": "D",
-        "text": "LAKE"
-      }
-    ],
-    "correctAnswer": "B",
-    "timeLimit": 20,
-    "explanation": "The missing word is SEA."
-  },
-  {
     "id": "m-011",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Memorize the following words: DOG, HOUSE, CAR, BOOK. Which word is missing: DOG, HOUSE, BOOK?",
+    "text": "Which word is missing from this partial sequence: DOG, HOUSE, BOOK?",
     "options": [
       {
         "id": "A",
@@ -2940,13 +2670,14 @@
     ],
     "correctAnswer": "C",
     "timeLimit": 20,
-    "explanation": "The missing word from the original list is 'CAR'."
+    "explanation": "The missing word from the original list is 'CAR'.",
+    "memorize": "DOG, HOUSE, CAR, BOOK"
   },
   {
     "id": "m-012",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Memorize the numbers: 3, 7, 2, 9. Which number is missing: 3, 2, 9?",
+    "text": "Which number is missing from this partial sequence: 3, 2, 9?",
     "options": [
       {
         "id": "A",
@@ -2967,13 +2698,14 @@
     ],
     "correctAnswer": "C",
     "timeLimit": 20,
-    "explanation": "The missing number is '7'."
+    "explanation": "The missing number is '7'.",
+    "memorize": "3, 7, 2, 9"
   },
   {
     "id": "m-013",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Memorize the words: CAT, MOUSE, CHICKEN, DOG. Which word is missing: CAT, CHICKEN, DOG?",
+    "text": "Which word is missing from this partial sequence: CAT, CHICKEN, DOG?",
     "options": [
       {
         "id": "A",
@@ -2994,13 +2726,14 @@
     ],
     "correctAnswer": "B",
     "timeLimit": 20,
-    "explanation": "The missing word is 'MOUSE'."
+    "explanation": "The missing word is 'MOUSE'.",
+    "memorize": "CAT, MOUSE, CHICKEN, DOG"
   },
   {
     "id": "m-014",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Memorize the numbers: 12, 45, 78, 23. Which number is missing: 12, 78, 23?",
+    "text": "Which number is missing from this partial sequence: 12, 78, 23?",
     "options": [
       {
         "id": "A",
@@ -3021,13 +2754,14 @@
     ],
     "correctAnswer": "C",
     "timeLimit": 20,
-    "explanation": "The missing number is '45'."
+    "explanation": "The missing number is '45'.",
+    "memorize": "12, 45, 78, 23"
   },
   {
     "id": "m-015",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Memorize the words: FLOWER, TREE, SEA, MOUNTAIN. Which word is missing: FLOWER, SEA, MOUNTAIN?",
+    "text": "Which word is missing from this partial sequence: FLOWER, SEA, MOUNTAIN?",
     "options": [
       {
         "id": "A",
@@ -3048,13 +2782,14 @@
     ],
     "correctAnswer": "B",
     "timeLimit": 20,
-    "explanation": "The missing word is 'TREE'."
+    "explanation": "The missing word is 'TREE'.",
+    "memorize": "FLOWER, TREE, SEA, MOUNTAIN"
   },
   {
     "id": "m-016",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Memorize the numbers: 5, 10, 15, 20. Which number is missing: 5, 15, 20?",
+    "text": "Which number is missing from this partial sequence: 5, 15, 20?",
     "options": [
       {
         "id": "A",
@@ -3075,13 +2810,14 @@
     ],
     "correctAnswer": "B",
     "timeLimit": 20,
-    "explanation": "The missing number is '10'."
+    "explanation": "The missing number is '10'.",
+    "memorize": "5, 10, 15, 20"
   },
   {
     "id": "m-017",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Memorize the words: SUN, MOON, STAR, PLANET. Which word is missing: SUN, STAR, PLANET?",
+    "text": "Which word is missing from this partial sequence: SUN, STAR, PLANET?",
     "options": [
       {
         "id": "A",
@@ -3102,13 +2838,14 @@
     ],
     "correctAnswer": "B",
     "timeLimit": 20,
-    "explanation": "The missing word is 'MOON'."
+    "explanation": "The missing word is 'MOON'.",
+    "memorize": "SUN, MOON, STAR, PLANET"
   },
   {
     "id": "m-018",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Memorize the numbers: 100, 200, 300, 400. Which number is missing: 100, 300, 400?",
+    "text": "Which number is missing from this partial sequence: 100, 300, 400?",
     "options": [
       {
         "id": "A",
@@ -3129,13 +2866,14 @@
     ],
     "correctAnswer": "B",
     "timeLimit": 20,
-    "explanation": "The missing number is '200'."
+    "explanation": "The missing number is '200'.",
+    "memorize": "100, 200, 300, 400"
   },
   {
     "id": "m-019",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Memorize the words: WATER, FIRE, AIR, EARTH. Which word is missing: WATER, AIR, EARTH?",
+    "text": "Which word is missing from this partial sequence: WATER, AIR, EARTH?",
     "options": [
       {
         "id": "A",
@@ -3156,13 +2894,14 @@
     ],
     "correctAnswer": "B",
     "timeLimit": 20,
-    "explanation": "The missing word is 'FIRE'."
+    "explanation": "The missing word is 'FIRE'.",
+    "memorize": "WATER, FIRE, AIR, EARTH"
   },
   {
     "id": "m-020",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Memorize the numbers: 7, 14, 21, 28. Which number is missing: 7, 21, 28?",
+    "text": "Which number is missing from this partial sequence: 7, 21, 28?",
     "options": [
       {
         "id": "A",
@@ -3183,13 +2922,14 @@
     ],
     "correctAnswer": "B",
     "timeLimit": 20,
-    "explanation": "The missing number is '14'."
+    "explanation": "The missing number is '14'.",
+    "memorize": "7, 14, 21, 28"
   },
   {
     "id": "m-021",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Memorize the words: MOUNTAIN, SEA, RIVER, LAKE. Which word is missing: MOUNTAIN, RIVER, LAKE?",
+    "text": "Which word is missing from this partial sequence: MOUNTAIN, RIVER, LAKE?",
     "options": [
       {
         "id": "A",
@@ -3210,7 +2950,8 @@
     ],
     "correctAnswer": "B",
     "timeLimit": 20,
-    "explanation": "The missing word is 'SEA'."
+    "explanation": "The missing word is 'SEA'.",
+    "memorize": "MOUNTAIN, SEA, RIVER, LAKE"
   },
   {
     "id": "m-022",
@@ -3270,7 +3011,7 @@
     "id": "m-024",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Recall: Read this list quickly: 'Apple, Train, Cloud, Book'. Which was the third item?",
+    "text": "Which item was third in the sequence you just memorized?",
     "options": [
       {
         "id": "A",
@@ -3291,7 +3032,8 @@
     ],
     "correctAnswer": "D",
     "timeLimit": 20,
-    "explanation": null
+    "explanation": null,
+    "memorize": "APPLE, TRAIN, CLOUD, BOOK"
   },
   {
     "id": "m-025",
@@ -3486,28 +3228,29 @@
     "id": "m-032",
     "dimension": "memory",
     "dimensionName": "Memory",
-    "text": "Recall: Think back to the first question in this test. What sequence did it ask you to complete?",
+    "memorize": "RED, BLUE, GREEN, YELLOW, PURPLE",
+    "text": "Which color was in the third position of the sequence you just memorized?",
     "options": [
       {
         "id": "A",
-        "text": "1, 2, 3, 4"
+        "text": "RED"
       },
       {
         "id": "B",
-        "text": "2, 4, 6, 8"
+        "text": "BLUE"
       },
       {
         "id": "C",
-        "text": "2, 6, 12, 20"
+        "text": "GREEN"
       },
       {
         "id": "D",
-        "text": "A, B, C, D"
+        "text": "YELLOW"
       }
     ],
     "correctAnswer": "C",
     "timeLimit": 20,
-    "explanation": null
+    "explanation": "RED (1st), BLUE (2nd), GREEN (3rd). The third color was GREEN."
   },
   {
     "id": "ps-001",

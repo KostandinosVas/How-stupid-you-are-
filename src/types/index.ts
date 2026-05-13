@@ -17,6 +17,7 @@ export interface Question {
   dimension: string;
   dimensionName: string;
   text?: string;
+  memorize?: string;   // sequence shown in phase-1 before the question is revealed
   type?: QuestionType;
   imageUrl?: string;
   options: QuestionOption[];
