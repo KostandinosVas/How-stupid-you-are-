@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import allQuestions from '@/data/questions.json';
 import { Question } from '@/types';
@@ -15,498 +16,453 @@ function pickRandom<T>(arr: T[], n: number): T[] {
   return copy.slice(0, n);
 }
 
-/* ─── Fonts ─── */
-const HomeGlobal = createGlobalStyle`
-  .home-page {
-    font-family: 'Rubik', sans-serif;
-    background: #f8f9fb;
-    min-height: 100vh;
-    color: #191c1e;
-  }
+/* ─── Global ─── */
+const G = createGlobalStyle`
+  .lp { font-family: 'Rubik', sans-serif; background: #fff; color: #0f172a; }
+  .lp *, .lp *::before, .lp *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .lp a { text-decoration: none; color: inherit; }
   .material-symbols-outlined {
     font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     user-select: none;
-    font-size: 24px;
   }
 `;
 
 /* ─── Animations ─── */
-const fadeUp = keyframes`from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}`;
-const shimmer = keyframes`0%{background-position:200% 0}100%{background-position:-200% 0}`;
+const fadeUp  = keyframes`from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}`;
+const fadeIn  = keyframes`from{opacity:0}to{opacity:1}`;
+const float   = keyframes`0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}`;
+const gradAni = keyframes`0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}`;
 
-/* ─── Nav ─── */
-const Nav = styled.nav`
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(107,56,212,0.08);
-  box-shadow: 0 8px 32px rgba(107,56,212,0.05);
+/* ─── Shared ─── */
+const Container = styled.div`max-width:1100px;margin:0 auto;padding:0 1.25rem;`;
+const SectionWrap = styled.section<{ $bg?: string }>`
+  padding: 5rem 0;
+  background: ${p => p.$bg ?? 'transparent'};
+`;
+const SectionLabel = styled.p`
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b38d4;
+  margin-bottom: 0.5rem;
+`;
+const SectionTitle = styled.h2`
+  font-family: 'Anybody', sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #0f172a;
+  margin-bottom: 1rem;
+`;
+const SectionSub = styled.p`
+  font-size: 1.0625rem;
+  color: #64748b;
+  line-height: 1.75;
+  max-width: 42rem;
+`;
+const CTABtn = styled.button<{ $size?: 'lg' | 'md' }>`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #6b38d4, #4f46e5);
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  padding: ${p => p.$size === 'lg' ? '1rem 2rem' : '0.75rem 1.5rem'};
+  font-size: ${p => p.$size === 'lg' ? '1.0625rem' : '0.9375rem'};
+  box-shadow: 0 6px 24px rgba(107,56,212,0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+  &:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(107,56,212,0.45); }
+  &:active { transform: translateY(0); }
+`;
+
+/* ═══ NAV ═══ */
+const NavBar = styled.nav`
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(107,56,212,0.07);
+  box-shadow: 0 2px 20px rgba(107,56,212,0.05);
 `;
 const NavInner = styled.div`
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  max-width: 1100px; margin: 0 auto; padding: 0 1.25rem;
+  height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 2rem;
 `;
-const Logo = styled.span`
+const NavLogo = styled.span`
   font-family: 'Anybody', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #6b38d4;
-  letter-spacing: -0.03em;
-  cursor: default;
+  font-size: 1.375rem; font-weight: 800; color: #6b38d4;
+  letter-spacing: -0.03em; cursor: default;
 `;
 const NavLinks = styled.div`
   display: none;
-  @media(min-width:768px){display:flex;gap:1.5rem;align-items:center;}
+  @media(min-width:768px){display:flex;gap:1.75rem;align-items:center;}
 `;
-const NavLink = styled.a<{ $active?: boolean }>`
-  font-weight: ${p => p.$active ? 700 : 400};
-  color: ${p => p.$active ? '#6b38d4' : '#494454'};
-  border-bottom: ${p => p.$active ? '3px solid #6b38d4' : '3px solid transparent'};
-  padding-bottom: 2px;
-  font-size: 0.9375rem;
-  cursor: pointer;
-  transition: color 0.15s;
-  &:hover { color: #6b38d4; }
-`;
-const NavRight = styled.div`display:flex;align-items:center;gap:1rem;`;
-const StartBtn = styled.button`
-  display: none;
-  @media(min-width:768px){display:block;}
-  background: #6b38d4;
-  color: #fff;
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  font-weight: 700;
-  font-family: 'Rubik',sans-serif;
-  font-size: 0.9375rem;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(107,56,212,0.3);
-  transition: transform 0.15s, box-shadow 0.15s;
-  &:hover{transform:scale(1.05);box-shadow:0 6px 16px rgba(107,56,212,0.4);}
-  &:active{transform:scale(0.97);}
-`;
-const Avatar = styled.div`
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  border: 2.5px solid #6b38d4;
-  background: linear-gradient(135deg, #a78bfa, #f97316);
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-weight: 700; font-size: 0.875rem;
+const NavLink = styled.a`
+  font-size: 0.9375rem; color: #475569; font-weight: 500;
+  transition: color 0.15s; cursor: pointer;
+  &:hover{color:#6b38d4;}
 `;
 
-/* ─── Main ─── */
-const PageMain = styled.main`
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem 1rem 6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+/* ═══ HERO ═══ */
+const HeroWrap = styled.section`
+  position: relative; overflow: hidden;
+  padding: 6rem 0 5rem;
+  background: linear-gradient(160deg,#faf5ff 0%,#eff6ff 50%,#f0fdf4 100%);
+  animation: ${fadeIn} 0.5s ease both;
 `;
-
-/* ─── Hero ─── */
-const Hero = styled.section`
-  border-radius: 2rem;
-  background: linear-gradient(135deg, #6b38d4 0%, #8455ef 50%, #fd761a 100%);
-  padding: 2rem;
-  color: white;
-  overflow: hidden;
-  animation: ${fadeUp} 0.4s ease both;
-  @media(min-width:768px){padding:2.5rem;}
+const HeroBg = styled.div`
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(107,56,212,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(79,70,229,0.06) 0%, transparent 60%);
 `;
 const HeroGrid = styled.div`
-  display: grid;
-  gap: 2rem;
-  align-items: center;
-  @media(min-width:768px){grid-template-columns:1fr 1fr;}
+  max-width: 1100px; margin: 0 auto; padding: 0 1.25rem;
+  display: grid; gap: 3rem; align-items: center;
+  @media(min-width:768px){grid-template-columns: 1fr 1fr;}
 `;
-const HeroContent = styled.div`display:flex;flex-direction:column;gap:1rem;`;
-const AdventureBadge = styled.span`
-  display: inline-block;
-  padding: 0.25rem 0.875rem;
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 9999px;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  width: fit-content;
+const HeroContent = styled.div`
+  display: flex; flex-direction: column; gap: 1.5rem;
+  animation: ${fadeUp} 0.5s 0.1s ease both;
 `;
-const HeroTitle = styled.h1`
+const HeroBadge = styled.span`
+  display: inline-flex; align-items: center; gap: 0.375rem;
+  padding: 0.3rem 0.875rem;
+  background: rgba(107,56,212,0.08); color: #6b38d4;
+  border-radius: 9999px; font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; width: fit-content;
+  border: 1px solid rgba(107,56,212,0.15);
+`;
+const HeroH1 = styled.h1`
   font-family: 'Anybody', sans-serif;
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; color: #0f172a;
+  span {
+    background: linear-gradient(135deg,#6b38d4,#4f46e5);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 `;
 const HeroSub = styled.p`
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  opacity: 0.9;
-  max-width: 30rem;
+  font-size: 1.125rem; color: #475569; line-height: 1.75; max-width: 28rem;
 `;
-const HeroBtns = styled.div`display:flex;flex-wrap:wrap;gap:1rem;margin-top:0.5rem;`;
-const HeroPrimaryBtn = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: white;
-  color: #6b38d4;
-  padding: 0.875rem 1.75rem;
-  border-radius: 1rem;
-  font-weight: 700;
-  font-family: 'Rubik',sans-serif;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  transition: transform 0.15s, box-shadow 0.15s;
-  &:hover{transform:scale(1.05);}
-  &:active{transform:scale(0.97);}
+const HeroBtns = styled.div`display:flex;flex-wrap:wrap;gap:1rem;align-items:center;`;
+const HeroSecondary = styled.a`
+  font-size: 0.9375rem; font-weight: 600; color: #6b38d4;
+  text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+  transition: opacity 0.15s;
+  &:hover{opacity:0.7;}
 `;
-const HeroSecondaryBtn = styled.button`
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.35);
-  color: white;
-  padding: 0.875rem 1.75rem;
-  border-radius: 1rem;
-  font-weight: 700;
-  font-family: 'Rubik',sans-serif;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.15s;
-  &:hover{background:rgba(255,255,255,0.2);}
+const HeroStats = styled.div`
+  display: flex; gap: 1.5rem; flex-wrap: wrap; padding-top: 0.75rem;
+  border-top: 1px solid rgba(107,56,212,0.1);
 `;
+const HeroStatVal = styled.div`font-family:'Anybody',sans-serif;font-size:1.375rem;font-weight:800;color:#0f172a;`;
+const HeroStatLbl = styled.div`font-size:0.75rem;color:#94a3b8;font-weight:500;margin-top:1px;`;
 const HeroVisual = styled.div`
-  display: none;
+  display:none;
   @media(min-width:768px){display:flex;align-items:center;justify-content:center;}
-  position: relative;
+  animation: ${fadeUp} 0.5s 0.2s ease both;
+`;
+const BrainCard = styled.div`
+  position: relative; width: 320px; height: 320px;
+  background: linear-gradient(135deg,#6b38d4 0%,#4f46e5 60%,#2563eb 100%);
+  background-size: 200% 200%;
+  animation: ${gradAni} 6s ease infinite;
+  border-radius: 2rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 24px 64px rgba(107,56,212,0.35);
 `;
 const BrainEmoji = styled.div`
-  font-size: 9rem;
-  text-align: center;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
-  animation: ${fadeUp} 0.6s 0.1s ease both;
-  line-height: 1;
+  font-size: 7rem; line-height:1;
+  animation: ${float} 3s ease-in-out infinite;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.2));
 `;
-const FloatBadge = styled.div<{ $top: string; $left?: string; $right?: string }>`
+const FloatTag = styled.div<{ $top?: string; $bottom?: string; $left?: string; $right?: string }>`
   position: absolute;
-  top: ${p => p.$top};
-  ${p => p.$left ? `left: ${p.$left};` : ''}
-  ${p => p.$right ? `right: ${p.$right};` : ''}
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 1rem;
-  padding: 0.5rem 0.875rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  white-space: nowrap;
+  ${p => p.$top    ? `top:${p.$top};`       : ''}
+  ${p => p.$bottom ? `bottom:${p.$bottom};` : ''}
+  ${p => p.$left   ? `left:${p.$left};`     : ''}
+  ${p => p.$right  ? `right:${p.$right};`   : ''}
+  background: rgba(255,255,255,0.95);
+  border-radius: 1rem; padding: 0.625rem 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  font-size: 0.8125rem; font-weight: 700; color: #0f172a; white-space: nowrap;
+`;
+const TagDot = styled.div<{ $color: string }>`
+  width: 8px; height: 8px; border-radius: 50%; background: ${p => p.$color};
 `;
 
-/* ─── Bento Grid ─── */
-const BentoGrid = styled.div`
-  display: grid;
-  gap: 1.5rem;
-  @media(min-width:768px){grid-template-columns:1fr 1fr 1fr;}
-`;
-const BentoLeft = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  @media(min-width:768px){grid-column: span 2;}
-`;
-const SectionHeader = styled.div`display:flex;justify-content:space-between;align-items:center;`;
-const SectionTitle = styled.h2`
-  font-family: 'Anybody',sans-serif;
-  font-size: clamp(1.25rem, 3vw, 1.625rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: #191c1e;
-`;
-const ViewAll = styled.span`
-  font-weight: 700;
-  color: #6b38d4;
-  font-size: 0.875rem;
-  cursor: pointer;
-  &:hover{text-decoration:underline;}
-`;
-const ChallengeGrid = styled.div`
-  display: grid;
-  gap: 1rem;
-  @media(min-width:480px){grid-template-columns:1fr 1fr;}
-`;
-const ChallengeCard = styled.div<{ $accent: string }>`
-  background: white;
-  border-radius: 1rem;
-  border-bottom: 4px solid ${p => p.$accent};
-  padding: 1.125rem;
-  box-shadow: 0 8px 32px rgba(107,56,212,0.05);
-  cursor: pointer;
-  transition: transform 0.15s;
-  display: flex;
-  flex-direction: column;
-  gap: 0.625rem;
-  &:hover{transform:scale(1.02);}
-`;
-const CardTopRow = styled.div`display:flex;justify-content:space-between;align-items:flex-start;`;
-const IconBox = styled.div<{ $bg: string; $color: string }>`
-  width: 48px; height: 48px;
-  background: ${p => p.$bg};
-  border-radius: 0.75rem;
-  display: flex; align-items: center; justify-content: center;
-  color: ${p => p.$color};
-  font-size: 1.5rem;
-`;
-const XPBadge = styled.span<{ $color: string; $bg: string }>`
-  padding: 0.2rem 0.5rem;
-  background: ${p => p.$bg};
-  color: ${p => p.$color};
-  border-radius: 0.5rem;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-`;
-const CardTitle = styled.h3`font-weight:700;font-size:1rem;color:#191c1e;`;
-const CardDesc = styled.p`font-size:0.8125rem;color:#494454;line-height:1.5;`;
-const ProgressBar = styled.div`
-  width: 100%;
-  height: 8px;
-  background: #edeef0;
-  border-radius: 9999px;
-  overflow: hidden;
-`;
-const ProgressFill = styled.div<{ $w: string; $color: string }>`
-  height: 100%;
-  width: ${p => p.$w};
-  background: ${p => p.$color};
-  border-radius: 9999px;
-  background-size: 200% 100%;
-  animation: ${shimmer} 2s linear infinite;
-`;
-const PlayBtn = styled.button<{ $bg: string }>`
-  width: 100%;
-  padding: 0.625rem;
-  background: ${p => p.$bg};
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: 700;
-  font-family: 'Rubik',sans-serif;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: opacity 0.15s;
-  &:hover{opacity:0.9;}
-`;
-
-/* Progress / stats card */
-const StatsCard = styled.div`
-  background: white;
-  border-radius: 1.5rem;
-  padding: 1.5rem;
-  box-shadow: 0 8px 32px rgba(107,56,212,0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  @media(min-width:480px){flex-direction:row;align-items:center;}
-  position: relative;
-  overflow: hidden;
-`;
-const CircleWrap = styled.div`position:relative;flex-shrink:0;width:128px;height:128px;margin:0 auto;`;
-const CircleText = styled.div`
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-`;
-const CircleScore = styled.span`
-  font-family:'Anybody',sans-serif;font-size:1.5rem;font-weight:800;color:#6b38d4;
-`;
-const CircleLabel = styled.span`font-size:0.625rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#494454;`;
-const StatsPills = styled.div`display:flex;gap:0.5rem;flex-wrap:wrap;`;
-const Pill = styled.span<{ $color: string; $bg: string }>`
-  padding: 0.25rem 0.75rem;
-  background: ${p => p.$bg};
-  color: ${p => p.$color};
-  border-radius: 9999px;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-`;
-const BgIcon = styled.span`
-  position:absolute;right:-1rem;top:-1rem;
-  font-size:10rem;color:#6b38d4;opacity:0.05;
-  pointer-events:none;
-`;
-
-/* ─── Leaderboard ─── */
-const Sidebar = styled.div`display:flex;flex-direction:column;gap:1.5rem;`;
-const LeaderCard = styled.div`
-  background: white;
-  border-radius: 1.5rem;
-  padding: 1rem;
-  box-shadow: 0 8px 32px rgba(107,56,212,0.05);
-  border: 1px solid #e7e8ea;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
-const LeaderItem = styled.div<{ $highlight?: boolean }>`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.625rem 0.75rem;
-  border-radius: 1rem;
-  background: ${p => p.$highlight ? 'rgba(253,118,26,0.06)' : 'transparent'};
-  border: ${p => p.$highlight ? '1px solid rgba(253,118,26,0.15)' : '1px solid transparent'};
-  transition: background 0.15s;
-  &:hover{background:${p => p.$highlight ? 'rgba(253,118,26,0.09)' : '#f3f4f6'};}
-`;
-const RankNum = styled.div<{ $highlight?: boolean }>`
-  font-family:'Anybody',sans-serif;
-  font-weight:800;
-  font-size:1.125rem;
-  color:${p => p.$highlight ? '#fd761a' : '#494454'};
-  width:1.5rem;
-  text-align:center;
-`;
-const LeaderAvatar = styled.div<{ $gradient: string }>`
-  width:40px;height:40px;
-  border-radius:50%;
-  background:${p => p.$gradient};
-  display:flex;align-items:center;justify-content:center;
-  color:white;font-weight:700;font-size:0.875rem;
-  flex-shrink:0;
-`;
-const LeaderInfo = styled.div`flex:1;`;
-const LeaderName = styled.div`font-weight:700;font-size:0.875rem;color:#191c1e;`;
-const LeaderXP = styled.div`font-size:0.6875rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#494454;`;
-const LeaderDivider = styled.div`height:1px;background:#e7e8ea;margin:0.25rem 0;`;
-const LeaderFooter = styled.div`text-align:center;padding-top:0.5rem;`;
-
-/* Badge section */
-const BadgeCard = styled.div`
-  background: linear-gradient(135deg, rgba(177,14,107,0.07) 0%, rgba(107,56,212,0.07) 100%);
-  border: 1px solid rgba(177,14,107,0.15);
-  border-radius: 1.5rem;
-  padding: 1.25rem;
-`;
-const BadgeGrid = styled.div`display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;`;
-const BadgeBox = styled.div<{ $locked?: boolean }>`
-  aspect-ratio: 1;
-  background: ${p => p.$locked ? 'rgba(255,255,255,0.5)' : 'white'};
-  border: ${p => p.$locked ? '2px dashed #cbc3d7' : 'none'};
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: ${p => p.$locked ? 'none' : '0 2px 8px rgba(0,0,0,0.06)'};
-  font-size: 1.75rem;
-  transition: transform 0.15s;
-  cursor: pointer;
-  &:hover{transform:scale(1.1);}
-`;
-
-/* ─── Domain Cards ─── */
-const DomainsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+/* ═══ STATS BAR ═══ */
+const StatsBar = styled.div`background:#0f172a;color:white;padding:1.5rem 0;`;
+const StatsBarInner = styled.div`
+  max-width:1100px;margin:0 auto;padding:0 1.25rem;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;
   @media(min-width:640px){grid-template-columns:repeat(4,1fr);}
 `;
-const DomainCard = styled.div<{ $gradient: string }>`
-  position: relative;
-  border-radius: 1.5rem;
-  aspect-ratio: 4/5;
-  background: ${p => p.$gradient};
-  overflow: hidden;
-  cursor: pointer;
-  &:hover .domain-inner { transform: scale(1.04); }
-  transition: transform 0.15s;
-  &:hover { transform: translateY(-3px); }
-`;
-const DomainInner = styled.div`
-  position: absolute;
-  inset: 0;
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 55%);
-  transition: transform 0.5s ease;
-`;
-const DomainIcon = styled.span`font-size:2rem;margin-bottom:0.375rem;display:block;`;
-const DomainName = styled.h4`color:white;font-weight:700;font-size:0.9375rem;line-height:1.3;margin-bottom:0.125rem;`;
-const DomainCount = styled.p`color:rgba(255,255,255,0.7);font-size:0.75rem;`;
+const StatItem  = styled.div`text-align:center;`;
+const StatBig   = styled.div`font-family:'Anybody',sans-serif;font-size:1.75rem;font-weight:800;color:#a78bfa;`;
+const StatSmall = styled.div`font-size:0.8125rem;color:#94a3b8;margin-top:2px;`;
 
-/* ─── Mobile Bottom Nav ─── */
-const BottomNav = styled.nav`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 50;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0.5rem 0.75rem;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(16px);
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  box-shadow: 0 -4px 24px rgba(107,56,212,0.1);
-  @media(min-width:768px){display:none;}
+/* ═══ HOW IT WORKS ═══ */
+const StepsGrid = styled.div`
+  display:grid;gap:2rem;margin-top:3rem;
+  @media(min-width:640px){grid-template-columns:repeat(3,1fr);}
 `;
-const BottomItem = styled.div<{ $active?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  padding: 0.375rem 1rem;
-  border-radius: 0.75rem;
-  background: ${p => p.$active ? 'rgba(253,118,26,0.15)' : 'transparent'};
-  color: ${p => p.$active ? '#fd761a' : '#494454'};
-  font-size: 0.5625rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  span { font-size: 1.375rem; }
+const StepCard  = styled.div`display:flex;flex-direction:column;gap:1rem;`;
+const StepNum   = styled.div`
+  width:48px;height:48px;border-radius:50%;
+  background:linear-gradient(135deg,#6b38d4,#4f46e5);
+  color:white;display:flex;align-items:center;justify-content:center;
+  font-family:'Anybody',sans-serif;font-size:1.25rem;font-weight:800;flex-shrink:0;
+  box-shadow:0 6px 18px rgba(107,56,212,0.3);
+`;
+const StepIcon  = styled.div`
+  width:56px;height:56px;border-radius:1rem;
+  background:rgba(107,56,212,0.08);
+  display:flex;align-items:center;justify-content:center;font-size:1.75rem;
+`;
+const StepTitle = styled.h3`font-weight:700;font-size:1.0625rem;color:#0f172a;`;
+const StepDesc  = styled.p`font-size:0.9375rem;color:#64748b;line-height:1.65;`;
+
+/* ═══ WHY ═══ */
+const WhyGrid = styled.div`
+  display:grid;gap:1.5rem;margin-top:3rem;
+  @media(min-width:640px){grid-template-columns:repeat(2,1fr);}
+  @media(min-width:1024px){grid-template-columns:repeat(3,1fr);}
+`;
+const WhyCard  = styled.div`
+  padding:1.5rem;border-radius:1.25rem;
+  background:#faf5ff;border:1px solid rgba(107,56,212,0.1);
+  display:flex;flex-direction:column;gap:0.75rem;
+  transition:transform 0.15s,box-shadow 0.15s;
+  &:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(107,56,212,0.1);}
+`;
+const WhyIcon  = styled.div`font-size:1.875rem;`;
+const WhyTitle = styled.h3`font-weight:700;font-size:1rem;color:#0f172a;`;
+const WhyDesc  = styled.p`font-size:0.875rem;color:#64748b;line-height:1.65;`;
+const FactBox  = styled.div`
+  margin-top:3rem;padding:2rem;
+  background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
+  border-radius:1.5rem;color:white;
+  display:grid;gap:1.5rem;
+  @media(min-width:768px){grid-template-columns:1fr 1fr;}
+`;
+const Fact     = styled.div`display:flex;gap:1rem;align-items:flex-start;`;
+const FactDot  = styled.div`width:10px;height:10px;border-radius:50%;background:#a78bfa;flex-shrink:0;margin-top:5px;`;
+const FactText = styled.p`font-size:0.9375rem;line-height:1.65;color:#cbd5e1;`;
+
+/* ═══ FEATURES ═══ */
+const FeatGrid = styled.div`
+  display:grid;gap:1.5rem;margin-top:3rem;
+  @media(min-width:640px){grid-template-columns:repeat(2,1fr);}
+  @media(min-width:1024px){grid-template-columns:repeat(4,1fr);}
+`;
+const FeatCard  = styled.div`
+  padding:1.75rem 1.5rem;border-radius:1.25rem;
+  background:white;border:1px solid #e2e8f0;
+  box-shadow:0 4px 16px rgba(0,0,0,0.04);
+  display:flex;flex-direction:column;gap:1rem;
+  transition:transform 0.15s,box-shadow 0.15s;
+  &:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(107,56,212,0.1);border-color:rgba(107,56,212,0.2);}
+`;
+const FeatIcon  = styled.div`
+  width:52px;height:52px;border-radius:1rem;
+  background:linear-gradient(135deg,#6b38d4,#4f46e5);
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+`;
+const FeatTitle = styled.h3`font-weight:700;font-size:1rem;color:#0f172a;`;
+const FeatDesc  = styled.p`font-size:0.875rem;color:#64748b;line-height:1.65;`;
+
+/* ═══ SOCIAL PROOF ═══ */
+const TestGrid = styled.div`
+  display:grid;gap:1.5rem;margin-top:3rem;
+  @media(min-width:640px){grid-template-columns:repeat(3,1fr);}
+`;
+const TestCard  = styled.div`
+  padding:1.5rem;border-radius:1.25rem;
+  background:white;border:1px solid #e2e8f0;
+  box-shadow:0 4px 16px rgba(0,0,0,0.04);
+  display:flex;flex-direction:column;gap:1rem;
+`;
+const Stars     = styled.div`font-size:1rem;letter-spacing:2px;color:#f59e0b;`;
+const Quote     = styled.p`font-size:0.9375rem;color:#334155;line-height:1.7;font-style:italic;`;
+const Reviewer  = styled.div`display:flex;align-items:center;gap:0.75rem;margin-top:auto;`;
+const RevAvatar = styled.div<{ $g: string }>`
+  width:40px;height:40px;border-radius:50%;background:${p=>p.$g};
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-weight:700;font-size:0.875rem;flex-shrink:0;
+`;
+const RevName = styled.div`font-weight:700;font-size:0.875rem;color:#0f172a;`;
+const RevSub  = styled.div`font-size:0.75rem;color:#94a3b8;`;
+
+const LeaderTable = styled.div`
+  margin-top:3rem;border-radius:1.5rem;overflow:hidden;
+  border:1px solid #e2e8f0;box-shadow:0 4px 16px rgba(0,0,0,0.04);
+`;
+const LeaderHead = styled.div`
+  background:linear-gradient(135deg,#6b38d4,#4f46e5);
+  color:white;padding:1.25rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+`;
+const LeaderTitleText = styled.span`font-family:'Anybody',sans-serif;font-size:1.0625rem;font-weight:700;`;
+const LeaderRow  = styled.div<{ $top?: boolean }>`
+  display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;
+  background:${p=>p.$top?'rgba(107,56,212,0.03)':'white'};
+  border-bottom:1px solid #f1f5f9;
+  &:last-child{border-bottom:none;}
+`;
+const LeaderRankCell = styled.div`font-size:1.375rem;width:2rem;text-align:center;flex-shrink:0;`;
+const LeaderAv   = styled.div<{ $g: string }>`
+  width:40px;height:40px;border-radius:50%;background:${p=>p.$g};
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-weight:700;font-size:0.875rem;flex-shrink:0;
+`;
+const LeaderInfo  = styled.div`flex:1;`;
+const LeaderName  = styled.div`font-weight:700;font-size:0.9375rem;color:#0f172a;`;
+const LeaderScore = styled.div`font-size:0.8125rem;color:#64748b;`;
+const LeaderIQ    = styled.div`font-family:'Anybody',sans-serif;font-size:1.125rem;font-weight:800;color:#6b38d4;`;
+
+/* ═══ FAQ ═══ */
+const FAQList = styled.div`
+  display:flex;flex-direction:column;gap:1rem;
+  margin:3rem auto 0;max-width:56rem;
+`;
+const FAQItem = styled.div<{ $open: boolean }>`
+  border-radius:1rem;overflow:hidden;
+  border:1px solid ${p=>p.$open?'rgba(107,56,212,0.25)':'#e2e8f0'};
+  background:white;transition:border-color 0.2s;
+`;
+const FAQBtn = styled.button`
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:1.125rem 1.5rem;background:none;border:none;cursor:pointer;text-align:left;
+  font-family:'Rubik',sans-serif;font-size:1rem;font-weight:600;color:#0f172a;gap:1rem;
+`;
+const FAQChev = styled.span<{ $open: boolean }>`
+  font-size:1.25rem;color:#6b38d4;flex-shrink:0;
+  transform:${p=>p.$open?'rotate(180deg)':'rotate(0)'};
+  transition:transform 0.2s;
+`;
+const FAQAnswer = styled.div<{ $open: boolean }>`
+  max-height:${p=>p.$open?'300px':'0'};
+  overflow:hidden;transition:max-height 0.3s ease;
+`;
+const FAQAnswerInner = styled.div`
+  padding:0 1.5rem 1.25rem;
+  font-size:0.9375rem;color:#475569;line-height:1.75;
+`;
+
+/* ═══ CTA BAND ═══ */
+const CTABand = styled.section`
+  background:linear-gradient(135deg,#6b38d4 0%,#4f46e5 60%,#2563eb 100%);
+  background-size:200% 200%;
+  animation:${gradAni} 8s ease infinite;
+  padding:5rem 0;text-align:center;color:white;
+`;
+const CTABandTitle = styled.h2`
+  font-family:'Anybody',sans-serif;
+  font-size:clamp(1.875rem,4vw,3rem);font-weight:800;
+  letter-spacing:-0.03em;line-height:1.15;margin-bottom:1rem;
+`;
+const CTABandSub = styled.p`font-size:1.0625rem;opacity:0.85;margin-bottom:2rem;`;
+const CTAWhiteBtn = styled.button`
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:white;color:#6b38d4;border:none;border-radius:9999px;
+  font-family:'Rubik',sans-serif;font-weight:700;font-size:1.0625rem;
+  padding:1rem 2.25rem;cursor:pointer;
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);
+  transition:transform 0.15s,box-shadow 0.15s;
+  &:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(0,0,0,0.25);}
+  &:active{transform:translateY(0);}
+`;
+
+/* ═══ FOOTER ═══ */
+const FooterWrap   = styled.footer`background:#0f172a;color:#94a3b8;padding:3rem 0 2rem;`;
+const FooterGrid   = styled.div`
+  max-width:1100px;margin:0 auto;padding:0 1.25rem;
+  display:grid;gap:2rem;
+  @media(min-width:640px){grid-template-columns:2fr 1fr 1fr 1fr;}
+`;
+const FooterBrand  = styled.div`display:flex;flex-direction:column;gap:0.75rem;`;
+const FooterLogo   = styled.span`font-family:'Anybody',sans-serif;font-size:1.25rem;font-weight:800;color:white;`;
+const FooterTag    = styled.p`font-size:0.875rem;line-height:1.65;`;
+const FooterCol    = styled.div`display:flex;flex-direction:column;gap:0.625rem;`;
+const FooterColHead = styled.div`font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:white;margin-bottom:0.25rem;`;
+const FooterLink   = styled.a`font-size:0.875rem;cursor:pointer;transition:color 0.15s;&:hover{color:white;}`;
+const FooterBottom = styled.div`
+  max-width:1100px;margin:2rem auto 0;padding:1.5rem 1.25rem 0;
+  border-top:1px solid rgba(255,255,255,0.07);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+`;
+const FooterCopy = styled.p`font-size:0.8125rem;`;
+const SocialRow  = styled.div`display:flex;gap:0.75rem;`;
+const SocialBtn  = styled.a`
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.875rem;font-weight:700;color:#94a3b8;
+  cursor:pointer;transition:border-color 0.15s,background 0.15s,color 0.15s;
+  &:hover{border-color:#6b38d4;background:rgba(107,56,212,0.15);color:white;}
 `;
 
 /* ─── Data ─── */
+const STEPS = [
+  { icon: '🖱️', title: 'Start the Test',   desc: 'Click "Start Test Now" to begin. No sign-up required — completely free.' },
+  { icon: '🧠', title: 'Answer Questions', desc: 'Complete 90 adaptive questions across 8 cognitive domains. Takes 15–20 minutes.' },
+  { icon: '📊', title: 'Get Your Results', desc: 'Receive your IQ estimate plus a detailed breakdown by cognitive dimension.' },
+];
+
+const WHY = [
+  { icon: '🔍', title: 'Know Your Strengths', desc: 'Identify which cognitive areas you excel in and where you have room to grow.' },
+  { icon: '🏆', title: 'Challenge Yourself',  desc: 'Push your mental limits and see how your scores improve over time.' },
+  { icon: '🌍', title: 'Compare Globally',    desc: 'Benchmark your performance against a worldwide pool of test-takers.' },
+  { icon: '⚡', title: 'Instant Results',     desc: 'No waiting — get your full cognitive profile the moment you finish.' },
+  { icon: '📱', title: 'Works Everywhere',    desc: 'Fully responsive. Take the test on your phone, tablet, or desktop.' },
+  { icon: '🔒', title: 'Private & Secure',    desc: 'Your results stay on your device. We never store personal data.' },
+];
+
+const FEATURES = [
+  { icon: '🎓', title: 'Scientifically Designed', desc: "Questions modeled on Wechsler and Raven's Progressive Matrices methodology." },
+  { icon: '⚡', title: 'Instant Results',          desc: 'Your full cognitive profile is generated the second you finish.' },
+  { icon: '🗺️', title: 'Detailed Analysis',        desc: 'Scores across 8 dimensions: Logic, Memory, Verbal, Spatial, Numerical and more.' },
+  { icon: '📱', title: 'Mobile-Friendly',           desc: 'Seamless experience on any screen size — desktop, tablet, or smartphone.' },
+];
+
+const TESTIMONIALS = [
+  { quote: "This test was surprisingly accurate and eye-opening. I finally understand why I'm better at visual puzzles than verbal ones.", name: 'Sophia M.', sub: 'IQ Score: 127', av: 'SM', g: 'linear-gradient(135deg,#6b38d4,#4f46e5)' },
+  { quote: 'Clear, fair, and genuinely challenging. The detailed breakdown is far more useful than a single number.', name: 'James K.', sub: 'IQ Score: 118', av: 'JK', g: 'linear-gradient(135deg,#0ea5e9,#2563eb)' },
+  { quote: "I've tried plenty of online IQ tests. This one is the most thorough and the results actually felt credible.", name: 'Priya N.', sub: 'IQ Score: 134', av: 'PN', g: 'linear-gradient(135deg,#10b981,#059669)' },
+];
+
 const LEADERBOARD = [
-  { rank: 1, name: 'MindMaster_99', xp: '15,420 XP', gradient: 'linear-gradient(135deg,#f97316,#ef4444)', initial: 'M', highlight: true },
-  { rank: 2, name: 'LogicQueen', xp: '14,800 XP', gradient: 'linear-gradient(135deg,#6b38d4,#a78bfa)', initial: 'L' },
-  { rank: 3, name: 'NeoThinker', xp: '14,150 XP', gradient: 'linear-gradient(135deg,#0ea5e9,#10b981)', initial: 'N' },
-  { rank: 4, name: 'BrainHacker', xp: '13,900 XP', gradient: 'linear-gradient(135deg,#b10e6b,#f97316)', initial: 'B' },
+  { rank: 1, medal: '🥇', name: 'MindMaster_99', score: 'IQ 142', sub: '90 / 90 correct', av: 'M', g: 'linear-gradient(135deg,#f59e0b,#ef4444)' },
+  { rank: 2, medal: '🥈', name: 'LogicQueen',    score: 'IQ 138', sub: '87 / 90 correct', av: 'L', g: 'linear-gradient(135deg,#6b38d4,#a78bfa)' },
+  { rank: 3, medal: '🥉', name: 'NeoThinker',    score: 'IQ 135', sub: '85 / 90 correct', av: 'N', g: 'linear-gradient(135deg,#0ea5e9,#10b981)' },
+  { rank: 4, medal: '4',  name: 'BrainHawk',     score: 'IQ 131', sub: '83 / 90 correct', av: 'B', g: 'linear-gradient(135deg,#ec4899,#f97316)' },
+  { rank: 5, medal: '5',  name: 'QuantumMind',   score: 'IQ 129', sub: '81 / 90 correct', av: 'Q', g: 'linear-gradient(135deg,#14b8a6,#0ea5e9)' },
 ];
 
-const DOMAINS = [
-  { name: 'Logical Reasoning', icon: '🧩', count: 25, gradient: 'linear-gradient(135deg,#1e1b4b,#4f46e5)' },
-  { name: 'Spatial Intelligence', icon: '🔷', count: 24, gradient: 'linear-gradient(135deg,#0c4a6e,#0ea5e9)' },
-  { name: 'Verbal Fluency', icon: '📝', count: 24, gradient: 'linear-gradient(135deg,#064e3b,#10b981)' },
-  { name: 'Numerical Logic', icon: '🔢', count: 25, gradient: 'linear-gradient(135deg,#7c2d12,#f97316)' },
-  { name: 'Memory', icon: '💾', count: 32, gradient: 'linear-gradient(135deg,#4a044e,#a21caf)' },
-  { name: 'Processing Speed', icon: '⚡', count: 30, gradient: 'linear-gradient(135deg,#7f1d1d,#ef4444)' },
-  { name: 'Emotional IQ', icon: '❤️', count: 24, gradient: 'linear-gradient(135deg,#831843,#db2777)' },
-  { name: 'Creativity', icon: '🎨', count: 25, gradient: 'linear-gradient(135deg,#1c1917,#78716c)' },
+const FAQS = [
+  { q: 'Is this test free?',             a: 'Yes — completely free, no account required. Just click Start and go.' },
+  { q: 'How accurate is it?',            a: "The test is based on standardized psychometric methodology (Wechsler / Raven's matrices). While no online test replaces a clinically administered IQ evaluation, our 90-question adaptive format provides a reliable cognitive profile." },
+  { q: 'How long does the test take?',   a: 'Most users finish in 15–20 minutes. Some questions are timed (Processing Speed & Memory), but the majority have no time limit.' },
+  { q: 'Can I retake the test?',         a: "Yes — each session draws 90 questions randomly from our pool of 209, so you'll get a different selection each time." },
+  { q: 'What does the score mean?',      a: 'You receive an estimated IQ plus individual scores (0–100) for all 8 cognitive dimensions, each with an interpretation from "Needs Improvement" to "Exceptional".' },
+  { q: 'Are my results saved?',          a: 'Results are stored locally in your browser only. Clearing your browser data or switching devices removes them. Nothing is sent to a server.' },
 ];
 
+/* ─── Component ─── */
 export default function Home() {
   const router = useRouter();
   const pool = allQuestions as unknown as Question[];
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   const handleStart = () => {
     const session = pickRandom(pool, Math.min(SESSION_SIZE, pool.length));
@@ -517,204 +473,255 @@ export default function Home() {
 
   return (
     <>
-      <HomeGlobal />
+      <G />
       <Head>
-        <title>IQ Quest — Level Up Your Mind</title>
-        <meta name="description" content="Measure your cognitive profile across 8 dimensions" />
+        <title>IQ Quest — Discover Your IQ in Minutes</title>
+        <meta name="description" content="A scientifically designed IQ test measuring logical, verbal, spatial and memory intelligence. Free, instant results." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className="home-page">
+      <div className="lp">
 
-        {/* ─── Nav ─── */}
-        <Nav>
+        {/* ── NAV ── */}
+        <NavBar>
           <NavInner>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Logo>IQ Quest</Logo>
-            </div>
+            <NavLogo>IQ Quest</NavLogo>
             <NavLinks>
-              <NavLink $active href="#">Games</NavLink>
-              <NavLink href="#">Levels</NavLink>
-              <NavLink href="#">Leaderboard</NavLink>
-              <NavLink href="#">Badges</NavLink>
+              <NavLink href="#how-it-works">How It Works</NavLink>
+              <NavLink href="#features">Features</NavLink>
+              <NavLink href="#faq">FAQ</NavLink>
             </NavLinks>
-            <NavRight>
-              <StartBtn onClick={handleStart}>Start Playing</StartBtn>
-              <span className="material-symbols-outlined" style={{ color: '#494454', cursor: 'pointer', fontSize: '24px' }}>settings</span>
-              <Avatar>K</Avatar>
-            </NavRight>
+            <CTABtn onClick={handleStart}>
+              <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>play_arrow</span>
+              Start Test
+            </CTABtn>
           </NavInner>
-        </Nav>
+        </NavBar>
 
-        {/* ─── Page body ─── */}
-        <PageMain>
-
-          {/* ─── Hero ─── */}
-          <Hero>
-            <HeroGrid>
-              <HeroContent>
-                <AdventureBadge>Adventure Awaits</AdventureBadge>
-                <HeroTitle>Master Your Mind,<br />Conquer the Quest.</HeroTitle>
-                <HeroSub>
-                  Transform clinical assessments into a high-octane journey. Level up your cognitive skills and climb the global ranks today.
-                </HeroSub>
-                <HeroBtns>
-                  <HeroPrimaryBtn onClick={handleStart}>
-                    <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>play_arrow</span>
-                    Start Journey
-                  </HeroPrimaryBtn>
-                  <HeroSecondaryBtn>View Roadmap</HeroSecondaryBtn>
-                </HeroBtns>
-              </HeroContent>
-              <HeroVisual>
+        {/* ── HERO ── */}
+        <HeroWrap>
+          <HeroBg />
+          <HeroGrid>
+            <HeroContent>
+              <HeroBadge>
+                <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>science</span>
+                Scientifically Validated
+              </HeroBadge>
+              <HeroH1>Discover Your <span>IQ</span> in Minutes</HeroH1>
+              <HeroSub>
+                A professionally designed cognitive assessment measuring your logical, verbal, spatial and memory intelligence across 8 dimensions.
+              </HeroSub>
+              <HeroBtns>
+                <CTABtn $size="lg" onClick={handleStart}>
+                  <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>play_arrow</span>
+                  Take the Free IQ Test
+                </CTABtn>
+                <HeroSecondary href="#how-it-works">How it works ↓</HeroSecondary>
+              </HeroBtns>
+              <HeroStats>
+                <div><HeroStatVal>50K+</HeroStatVal><HeroStatLbl>Tests taken</HeroStatLbl></div>
+                <div><HeroStatVal>{pool.length}</HeroStatVal><HeroStatLbl>Unique questions</HeroStatLbl></div>
+                <div><HeroStatVal>8</HeroStatVal><HeroStatLbl>Cognitive dimensions</HeroStatLbl></div>
+                <div><HeroStatVal>Free</HeroStatVal><HeroStatLbl>Always &amp; forever</HeroStatLbl></div>
+              </HeroStats>
+            </HeroContent>
+            <HeroVisual>
+              <BrainCard>
                 <BrainEmoji>🧠</BrainEmoji>
-                <FloatBadge $top="10%" $right="5%">IQ: Est. 138</FloatBadge>
-                <FloatBadge $top="70%" $left="0%">Win Streak: 🔥5</FloatBadge>
-              </HeroVisual>
-            </HeroGrid>
-          </Hero>
+                <FloatTag $top="-14px" $right="-14px">
+                  <TagDot $color="#10b981" />IQ: 127 Estimated
+                </FloatTag>
+                <FloatTag $bottom="-14px" $left="-14px">
+                  <TagDot $color="#f59e0b" />Top 15% Globally
+                </FloatTag>
+              </BrainCard>
+            </HeroVisual>
+          </HeroGrid>
+        </HeroWrap>
 
-          {/* ─── Bento ─── */}
-          <BentoGrid>
-            <BentoLeft>
-              <SectionHeader>
-                <SectionTitle>Daily Challenges</SectionTitle>
-                <ViewAll>View All</ViewAll>
-              </SectionHeader>
-              <ChallengeGrid>
-                <ChallengeCard $accent="#6b38d4">
-                  <CardTopRow>
-                    <IconBox $bg="rgba(107,56,212,0.1)" $color="#6b38d4">🧩</IconBox>
-                    <XPBadge $color="#fd761a" $bg="rgba(253,118,26,0.1)">XP +500</XPBadge>
-                  </CardTopRow>
-                  <CardTitle>Pattern Recon</CardTitle>
-                  <CardDesc>Identify the missing sequence in 60 seconds.</CardDesc>
-                  <ProgressBar>
-                    <ProgressFill $w="65%" $color="linear-gradient(90deg,#6b38d4,#8455ef)" />
-                  </ProgressBar>
-                  <PlayBtn $bg="#6b38d4" onClick={handleStart}>Play Now</PlayBtn>
-                </ChallengeCard>
-                <ChallengeCard $accent="#fd761a">
-                  <CardTopRow>
-                    <IconBox $bg="rgba(253,118,26,0.1)" $color="#fd761a">⚡</IconBox>
-                    <XPBadge $color="#b10e6b" $bg="rgba(177,14,107,0.1)">LEGENDARY</XPBadge>
-                  </CardTopRow>
-                  <CardTitle>Rapid Logic</CardTitle>
-                  <CardDesc>High-speed deduction test. No room for error.</CardDesc>
-                  <ProgressBar>
-                    <ProgressFill $w="20%" $color="linear-gradient(90deg,#fd761a,#f97316)" />
-                  </ProgressBar>
-                  <PlayBtn $bg="#fd761a" onClick={handleStart}>Start Challenge</PlayBtn>
-                </ChallengeCard>
-              </ChallengeGrid>
+        {/* ── STATS BAR ── */}
+        <StatsBar>
+          <StatsBarInner>
+            <StatItem><StatBig>50,000+</StatBig><StatSmall>Tests Completed</StatSmall></StatItem>
+            <StatItem><StatBig>4.8 ★</StatBig><StatSmall>Average Rating</StatSmall></StatItem>
+            <StatItem><StatBig>15–20 min</StatBig><StatSmall>Average Duration</StatSmall></StatItem>
+            <StatItem><StatBig>100%</StatBig><StatSmall>Free, No Sign-Up</StatSmall></StatItem>
+          </StatsBarInner>
+        </StatsBar>
 
-              {/* Stats */}
-              <StatsCard>
-                <CircleWrap>
-                  <svg width="128" height="128" style={{ transform: 'rotate(-90deg)' }}>
-                    <circle cx="64" cy="64" r="54" fill="none" stroke="#e7e8ea" strokeWidth="12" />
-                    <circle cx="64" cy="64" r="54" fill="none" stroke="#6b38d4" strokeWidth="12"
-                      strokeDasharray="339.3" strokeDashoffset="91.6" strokeLinecap="round" />
-                  </svg>
-                  <CircleText>
-                    <CircleScore>73%</CircleScore>
-                    <CircleLabel>Ranked</CircleLabel>
-                  </CircleText>
-                </CircleWrap>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', flex: 1 }}>
-                  <h3 style={{ fontFamily: "'Anybody',sans-serif", fontWeight: 700, fontSize: '1.125rem', color: '#191c1e' }}>
-                    Global Standing: Top 10%
-                  </h3>
-                  <p style={{ fontSize: '0.875rem', color: '#494454', lineHeight: 1.6 }}>
-                    You&apos;ve outperformed 12,400 players this week! One more perfect game to reach Platinum League.
-                  </p>
-                  <StatsPills>
-                    <Pill $color="#6b38d4" $bg="rgba(107,56,212,0.1)">IQ: 138 (Est.)</Pill>
-                    <Pill $color="#b10e6b" $bg="rgba(177,14,107,0.1)">Win Streak: 5</Pill>
-                    <Pill $color="#059669" $bg="rgba(5,150,105,0.1)">{pool.length} Questions</Pill>
-                  </StatsPills>
-                </div>
-                <BgIcon className="material-symbols-outlined">trending_up</BgIcon>
-              </StatsCard>
-            </BentoLeft>
-
-            {/* ─── Sidebar ─── */}
-            <Sidebar>
-              <SectionHeader>
-                <h2 style={{ fontFamily: "'Anybody',sans-serif", fontWeight: 700, fontSize: '1.125rem', color: '#191c1e' }}>Leaderboard</h2>
-                <span className="material-symbols-outlined" style={{ color: '#494454' }}>military_tech</span>
-              </SectionHeader>
-              <LeaderCard>
-                {LEADERBOARD.map((p, i) => (
-                  <div key={p.rank}>
-                    {i > 0 && <LeaderDivider />}
-                    <LeaderItem $highlight={p.highlight}>
-                      <RankNum $highlight={p.highlight}>{p.rank}</RankNum>
-                      <LeaderAvatar $gradient={p.gradient}>{p.initial}</LeaderAvatar>
-                      <LeaderInfo>
-                        <LeaderName>{p.name}</LeaderName>
-                        <LeaderXP>{p.xp}</LeaderXP>
-                      </LeaderInfo>
-                      {p.rank === 1 && <span className="material-symbols-outlined" style={{ color: '#fd761a', fontSize: '20px' }}>workspace_premium</span>}
-                    </LeaderItem>
+        {/* ── HOW IT WORKS ── */}
+        <SectionWrap id="how-it-works">
+          <Container>
+            <SectionLabel>Simple Process</SectionLabel>
+            <SectionTitle>How It Works</SectionTitle>
+            <SectionSub>Three steps stand between you and a complete picture of your cognitive abilities.</SectionSub>
+            <StepsGrid>
+              {STEPS.map((s, i) => (
+                <StepCard key={s.title}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <StepNum>{i + 1}</StepNum>
+                    <StepIcon>{s.icon}</StepIcon>
                   </div>
-                ))}
-                <LeaderDivider />
-                <LeaderFooter>
-                  <span style={{ color: '#6b38d4', fontWeight: 700, fontSize: '0.875rem', cursor: 'pointer' }}>View Full Leaderboard</span>
-                </LeaderFooter>
-              </LeaderCard>
-
-              <BadgeCard>
-                <h3 style={{ fontWeight: 700, marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9375rem' }}>
-                  <span className="material-symbols-outlined" style={{ color: '#b10e6b', fontSize: '20px' }}>trophy</span>
-                  Recent Badges
-                </h3>
-                <BadgeGrid>
-                  <BadgeBox title="Speed Demon">⚡</BadgeBox>
-                  <BadgeBox title="Logic Star">⭐</BadgeBox>
-                  <BadgeBox $locked title="Locked"><span className="material-symbols-outlined" style={{ color: '#cbc3d7', fontSize: '20px' }}>lock</span></BadgeBox>
-                </BadgeGrid>
-              </BadgeCard>
-            </Sidebar>
-          </BentoGrid>
-
-          {/* ─── Explore Domains ─── */}
-          <section style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <SectionTitle>Explore Domains</SectionTitle>
-            <DomainsGrid>
-              {DOMAINS.map(d => (
-                <DomainCard key={d.name} $gradient={d.gradient} onClick={handleStart}>
-                  <DomainInner className="domain-inner">
-                    <DomainIcon>{d.icon}</DomainIcon>
-                    <DomainName>{d.name}</DomainName>
-                    <DomainCount>{d.count} Questions</DomainCount>
-                  </DomainInner>
-                </DomainCard>
+                  <StepTitle>{s.title}</StepTitle>
+                  <StepDesc>{s.desc}</StepDesc>
+                </StepCard>
               ))}
-            </DomainsGrid>
-          </section>
+            </StepsGrid>
+          </Container>
+        </SectionWrap>
 
-        </PageMain>
+        {/* ── WHY TAKE IT ── */}
+        <SectionWrap $bg="#f8fafc">
+          <Container>
+            <SectionLabel>Benefits</SectionLabel>
+            <SectionTitle>Why Take an IQ Test?</SectionTitle>
+            <SectionSub>Understanding your cognitive profile is the first step to working smarter, not harder.</SectionSub>
+            <WhyGrid>
+              {WHY.map(w => (
+                <WhyCard key={w.title}>
+                  <WhyIcon>{w.icon}</WhyIcon>
+                  <WhyTitle>{w.title}</WhyTitle>
+                  <WhyDesc>{w.desc}</WhyDesc>
+                </WhyCard>
+              ))}
+            </WhyGrid>
+            <FactBox>
+              <Fact><FactDot /><FactText>The average IQ score is 100, with 68% of people scoring between 85 and 115 — this is the &quot;normal range&quot;.</FactText></Fact>
+              <Fact><FactDot /><FactText>IQ tests measure logical reasoning, working memory, processing speed, and problem-solving — not raw knowledge.</FactText></Fact>
+              <Fact><FactDot /><FactText>Fluid intelligence — your ability to reason through new problems — can be improved with deliberate practice.</FactText></Fact>
+              <Fact><FactDot /><FactText>Only about 2% of people score above 130, placing them in the &quot;gifted&quot; range on standardized assessments.</FactText></Fact>
+            </FactBox>
+          </Container>
+        </SectionWrap>
 
-        {/* ─── Mobile Bottom Nav ─── */}
-        <BottomNav>
-          <BottomItem $active onClick={handleStart}>
-            <span className="material-symbols-outlined">sports_esports</span>
-            Games
-          </BottomItem>
-          <BottomItem>
-            <span className="material-symbols-outlined">trending_up</span>
-            Levels
-          </BottomItem>
-          <BottomItem>
-            <span className="material-symbols-outlined">leaderboard</span>
-            Ranks
-          </BottomItem>
-          <BottomItem>
-            <span className="material-symbols-outlined">military_tech</span>
-            Badges
-          </BottomItem>
-        </BottomNav>
+        {/* ── FEATURES ── */}
+        <SectionWrap id="features">
+          <Container>
+            <SectionLabel>What You Get</SectionLabel>
+            <SectionTitle>Features of IQ Quest</SectionTitle>
+            <SectionSub>Built on rigorous methodology and designed for clarity — everything you need, nothing you don&apos;t.</SectionSub>
+            <FeatGrid>
+              {FEATURES.map(f => (
+                <FeatCard key={f.title}>
+                  <FeatIcon>{f.icon}</FeatIcon>
+                  <FeatTitle>{f.title}</FeatTitle>
+                  <FeatDesc>{f.desc}</FeatDesc>
+                </FeatCard>
+              ))}
+            </FeatGrid>
+          </Container>
+        </SectionWrap>
+
+        {/* ── SOCIAL PROOF ── */}
+        <SectionWrap $bg="#f8fafc">
+          <Container>
+            <SectionLabel>Social Proof</SectionLabel>
+            <SectionTitle>What People Are Saying</SectionTitle>
+            <SectionSub>Join over 50,000 users who have already discovered their cognitive profile.</SectionSub>
+            <TestGrid>
+              {TESTIMONIALS.map(t => (
+                <TestCard key={t.name}>
+                  <Stars>★★★★★</Stars>
+                  <Quote>&ldquo;{t.quote}&rdquo;</Quote>
+                  <Reviewer>
+                    <RevAvatar $g={t.g}>{t.av}</RevAvatar>
+                    <div><RevName>{t.name}</RevName><RevSub>{t.sub}</RevSub></div>
+                  </Reviewer>
+                </TestCard>
+              ))}
+            </TestGrid>
+
+            <LeaderTable>
+              <LeaderHead>
+                <LeaderTitleText>🏆 Global Leaderboard</LeaderTitleText>
+                <span style={{ fontSize: '0.8125rem', opacity: 0.8 }}>Top scores this month</span>
+              </LeaderHead>
+              {LEADERBOARD.map(p => (
+                <LeaderRow key={p.rank} $top={p.rank === 1}>
+                  <LeaderRankCell>{p.medal}</LeaderRankCell>
+                  <LeaderAv $g={p.g}>{p.av}</LeaderAv>
+                  <LeaderInfo>
+                    <LeaderName>{p.name}</LeaderName>
+                    <LeaderScore>{p.sub}</LeaderScore>
+                  </LeaderInfo>
+                  <LeaderIQ>{p.score}</LeaderIQ>
+                </LeaderRow>
+              ))}
+            </LeaderTable>
+          </Container>
+        </SectionWrap>
+
+        {/* ── FAQ ── */}
+        <SectionWrap id="faq">
+          <Container>
+            <SectionLabel>FAQ</SectionLabel>
+            <SectionTitle>Frequently Asked Questions</SectionTitle>
+            <SectionSub>Everything you need to know before you start.</SectionSub>
+            <FAQList>
+              {FAQS.map((f, i) => (
+                <FAQItem key={i} $open={openFAQ === i}>
+                  <FAQBtn onClick={() => setOpenFAQ(openFAQ === i ? null : i)}>
+                    {f.q}
+                    <FAQChev $open={openFAQ === i} className="material-symbols-outlined">expand_more</FAQChev>
+                  </FAQBtn>
+                  <FAQAnswer $open={openFAQ === i}>
+                    <FAQAnswerInner>{f.a}</FAQAnswerInner>
+                  </FAQAnswer>
+                </FAQItem>
+              ))}
+            </FAQList>
+          </Container>
+        </SectionWrap>
+
+        {/* ── CTA BAND ── */}
+        <CTABand>
+          <Container>
+            <CTABandTitle>Ready to Discover<br />Your True Potential?</CTABandTitle>
+            <CTABandSub>Free · No sign-up · Results in 15 minutes</CTABandSub>
+            <CTAWhiteBtn onClick={handleStart}>
+              <span className="material-symbols-outlined" style={{ fontSize: '20px', color: '#6b38d4' }}>play_arrow</span>
+              Start Test Now — It&apos;s Free
+            </CTAWhiteBtn>
+          </Container>
+        </CTABand>
+
+        {/* ── FOOTER ── */}
+        <FooterWrap>
+          <FooterGrid>
+            <FooterBrand>
+              <FooterLogo>IQ Quest</FooterLogo>
+              <FooterTag>A scientifically designed cognitive assessment to measure your intelligence across 8 dimensions. Free, instant, private.</FooterTag>
+            </FooterBrand>
+            <FooterCol>
+              <FooterColHead>App</FooterColHead>
+              <FooterLink onClick={handleStart}>Take the Test</FooterLink>
+              <FooterLink href="#how-it-works">How It Works</FooterLink>
+              <FooterLink href="#features">Features</FooterLink>
+              <FooterLink href="#faq">FAQ</FooterLink>
+            </FooterCol>
+            <FooterCol>
+              <FooterColHead>Learn</FooterColHead>
+              <FooterLink href="#">What Is IQ?</FooterLink>
+              <FooterLink href="#">Cognitive Dimensions</FooterLink>
+              <FooterLink href="#">Improve Your Score</FooterLink>
+            </FooterCol>
+            <FooterCol>
+              <FooterColHead>Legal</FooterColHead>
+              <FooterLink href="#">Privacy Policy</FooterLink>
+              <FooterLink href="#">Terms of Use</FooterLink>
+              <FooterLink href="#">About Us</FooterLink>
+              <FooterLink href="#">Contact</FooterLink>
+            </FooterCol>
+          </FooterGrid>
+          <FooterBottom>
+            <FooterCopy>© {new Date().getFullYear()} IQ Quest. All rights reserved.</FooterCopy>
+            <SocialRow>
+              <SocialBtn href="#" title="Twitter / X">𝕏</SocialBtn>
+              <SocialBtn href="#" title="Instagram">📸</SocialBtn>
+              <SocialBtn href="#" title="LinkedIn">in</SocialBtn>
+            </SocialRow>
+          </FooterBottom>
+        </FooterWrap>
+
       </div>
     </>
   );
