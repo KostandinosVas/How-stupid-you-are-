@@ -172,7 +172,7 @@ const HeroVisual = styled.div`
 `;
 const BrainCard = styled.div`
   position: relative; width: 320px; height: 320px;
-  background: url('/images/brain01.png') center/cover no-repeat;
+  background: url('/images/brain02.png') center/cover no-repeat;
   border-radius: 2rem;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 24px 64px rgba(107,56,212,0.35);
